@@ -1,5 +1,4 @@
 swaybg -i ~/Pictures/wallpapers/dark-foggy-forest.jpg &
-lxqt-policykit-agent &
 kanshi &
 fnott &
 waybar &

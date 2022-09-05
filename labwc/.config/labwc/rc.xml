@@ -401,13 +401,6 @@
   <libinput>
     <device category="">
       <naturalScroll>no</naturalScroll>
-      <leftHanded/>
-      <pointerSpeed/>
-      <accelProfile/>
-      <tap>yes</tap>
-      <tapButtonMap/>
-      <middleEmulation/>
-      <disableWhileTyping/>
     </device>
   </libinput>
 </labwc_config>
