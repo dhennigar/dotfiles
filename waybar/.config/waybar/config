@@ -1,0 +1,25 @@
+{
+	"layer": "top",
+	"position": "bottom",
+	"height": 30,
+	"spacing": 4,
+	"modules-left": ["wlr/workspaces","wlr/taskbar"],
+	"modules-right": ["battery","clock"],
+
+	"wlr/workspaces": {
+		"format": "{name}: {icon}",
+		"all-outputs": true
+	},
+
+	"wlr/taskbar": {
+		"all-outputs": true,
+		"format": "{app_id}",
+		"tooltip": false,
+		"on-click": "activate",
+		"on-click-right": "minimize", 
+		"on-click-middle": "fullscreen",
+		"app_ids-mapping": {
+			"firefox": "Firefox"
+		}
+	}
+}

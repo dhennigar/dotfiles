@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu>
+<menu id="root-menu" label="root-menu">
+	<menu id="Accessories" label="Accessories">
+		<item label="Neovim-Qt" icon="nvim-qt">
+			<action name="Execute"><command>nvim-qt --</command></action>
+		</item>
+	</menu> <!-- Accessories -->
+	<menu id="Internet" label="Internet">
+		<item label="Firefox" icon="firefox">
+			<action name="Execute"><command>/usr/lib/firefox/firefox</command></action>
+		</item>
+	</menu> <!-- Internet -->
+	<menu id="Multimedia" label="Multimedia">
+	</menu> <!-- Multimedia -->
+	<menu id="Office" label="Office">
+		<item label="Zathura" icon="org.pwmt.zathura">
+			<action name="Execute"><command>zathura</command></action>
+		</item>
+	</menu> <!-- Office -->
+	<menu id="System" label="System">
+		<item label="Alacritty" icon="Alacritty">
+			<action name="Execute"><command>alacritty</command></action>
+		</item>
+		<item label="Htop" icon="htop">
+			<action name="Execute"><command>htop</command></action>
+		</item>
+		<item label="Labwc Config" icon="labwc-tweaks">
+			<action name="Execute"><command>labwc-tweaks</command></action>
+		</item>
+		<item label="Reconfigure"><action name="Reconfigure" /></item>
+		<item label="Exit"><action name="Exit" /></item>
+	</menu> <!-- System -->
+</menu> <!-- root-menu -->
+</openbox_menu>

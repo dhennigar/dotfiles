@@ -1,0 +1,10 @@
+# kanshi config file
+
+profile {
+	output LVDS-1 disable
+	output #PLACE LENOVO DISPLAY HERE mode 1650*900 position 0,0
+}
+
+profile {
+	output LVDS-1 enable
+}

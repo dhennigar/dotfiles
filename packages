@@ -1,0 +1,19 @@
+# pacman
+arc-gtk-theme
+neovim neovim-qt
+cpupower
+pcmanfm
+lxqt-polkit
+qt5ct
+interception-tools interception-dual-function-keys
+
+# aur
+baph
+labwc
+cpupower-gui
+laptop-mode-tools
+arc-kde
+
+# from source
+labwc-tweaks labwc-gtktheme
+arc-openbox-theme
