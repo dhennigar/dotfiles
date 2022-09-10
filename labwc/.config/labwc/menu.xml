@@ -1,25 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_menu>
 <menu id="root-menu" label="root-menu">
-	<item label="Terminal" icon="Alacritty">
-		<action name="Execute"><command>alacritty</command></action>
+	<item label="terminal">
+		<action name="Execute">
+			<command>alacritty</command>
+		</action>
 	</item>
-	<item label="Firefox" icon="firefox">
-		<action name="Execute"><command>/usr/lib/firefox/firefox</command></action>
-	</item>
-	<menu id="Multimedia" label="Multimedia">
-	</menu> <!-- Multimedia -->
-	<menu id="Office" label="Office">
-		<item label="Zathura" icon="org.pwmt.zathura">
-			<action name="Execute"><command>zathura</command></action>
+	<menu id="internet" label="internet">
+		<item label="firefox">
+			<action name="Execute">
+				<command>firefox</command>
+			</action>
 		</item>
+		<item label="transmission">
+			<action name="Execute">
+				<command>transmission-qt</command>
+			</action>
+		</item>
+	</menu> <!-- Internet -->
+	<menu id="devel" label="devel">
+		<item label="rstudio">
+			<action name="Execute">
+				<command>rstudio</command>
+			</action>
+		</item>
+		<item label="neovim">
+			<action name="Execute">
+				<command>nvim-qt</command>
+			</action>
+		</item>
+
+	</menu> <!-- Development -->
+	<menu id="office" label="office">
+		<item label="writer">
+			<action name="Execute">
+				<command>libreoffice --writer</command>
+			</action>
+		</item>
+		<item label="calc">
+			<action name="Execute">
+				<command>libreoffice --calc</command>
+			</action>
+		</item>
+		<item label="impress">
+			<action name="Execute">
+				<command>libreoffice --impress</command>
+			</action>
+		</item>
+		<item label="math">
+			<action name="Execute">
+				<command>libreoffice --math</command>
+			</action>
+		</item>
+
 	</menu> <!-- Office -->
-	<menu id="System" label="System">
-		<item label="Labwc-Tweaks" icon="labwc-tweaks">
-			<action name="Execute"><command>labwc-tweaks</command></action>
+	<menu id="labwc" label="labwc">
+		<item label="tweaks" icon="labwc-tweaks">
+			<action name="Execute">
+				<command>labwc-tweaks</command>
+			</action>
 		</item>
-		<item label="Reconfigure"><action name="Reconfigure" /></item>
-		<item label="Exit"><action name="Exit" /></item>
+		<item label="reconfigure">
+			<action name="Reconfigure" />
+		</item>
+		<item label="exit">
+			<action name="Exit" />
+		</item>
 	</menu> <!-- System -->
 </menu> <!-- root-menu -->
 </openbox_menu>

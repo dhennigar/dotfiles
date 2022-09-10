@@ -2,22 +2,22 @@
 <labwc_config>
   <core>
     <decoration>server</decoration>
-    <gap>0</gap>
+    <gap>5</gap>
     <adaptiveSync>no</adaptiveSync>
-    <cycleViewPreview>yes</cycleViewPreview>
+    <cycleViewPreview>no</cycleViewPreview>
     <cycleViewOutlines>yes</cycleViewOutlines>
   </core>
   <!-- <font><theme> can be defined without an attribute to set all places -->
   <theme>
     <name>Arc-Dark-openbox</name>
-    <cornerRadius>0</cornerRadius>
+    <cornerRadius>8</cornerRadius>
     <font place="ActiveWindow">
       <name>Noto Sans</name>
       <size>10</size>
     </font>
     <font place="MenuItem">
       <name>Noto Sans</name>
-      <size>9</size>
+      <size>10</size>
     </font>
     <font place="OSD">
       <name>Noto Sans</name>
@@ -35,10 +35,10 @@
   <!-- Set range to 0 to disable window snapping completely -->
   <snapping>
     <range>1</range>
-    <topMaximize>no</topMaximize>
+    <topMaximize>yes</topMaximize>
   </snapping>
   <desktops>
-    <popupTime>1000</popupTime>
+    <popupTime>0</popupTime>
     <names>
       <name>Workspace 1</name>
       <name>Workspace 2</name>
@@ -64,7 +64,7 @@
     <keybind key="W-Escape">
       <action name="Exit"/>
     </keybind>
-    <keybind key="W-r">
+    <keybind key="W-S-r">
       <action name="Reconfigure"/>
     </keybind>
     <keybind key="A-Tab">
@@ -110,7 +110,11 @@
         <to>Workspace 3</to>
       </action>
     </keybind>
-
+    <keybind key="W-n">
+      <action name="Execute">
+        <command>fnottctl dismiss</command>
+      </action>
+    </keybind>
     <keybind key="W-Return">
       <action name="Execute">
         <command>alacritty</command>
@@ -127,11 +131,24 @@
       </action>
     </keybind>
     <keybind key="W-e">
-	    <action name="Execute">
-		    <command>pcmanfm</command>
-	    </action>
+      <action name="Execute">
+        <command>pcmanfm</command>
+      </action>
+    </keybind>
+    <keybind key="W-r">
+      <action name="Execute">
+        <command>rstudio</command>
+      </action>
+    </keybind>
+    <keybind key="W-c">
+      <action name="Execute">
+        <command>speedcrunch</command>
+      </action>
     </keybind>
     <keybind key="W-q">
+      <action name="Close"/>
+    </keybind>
+    <keybind key="A-F4">
       <action name="Close"/>
     </keybind>
     <keybind key="W-Up">
@@ -193,18 +210,18 @@
     <!-- time is in ms -->
     <doubleClickTime>500</doubleClickTime>
     <context name="Frame">
-      <mousebind button="A-Left" action="Press">
+      <mousebind button="W-Left" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
       </mousebind>
-      <mousebind button="A-Left" action="Drag">
+      <mousebind button="W-Left" action="Drag">
         <action name="Move"/>
       </mousebind>
-      <mousebind button="A-Right" action="Press">
+      <mousebind button="W-Right" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
       </mousebind>
-      <mousebind button="A-Right" action="Drag">
+      <mousebind button="W-Right" action="Drag">
         <action name="Resize"/>
       </mousebind>
     </context>
@@ -399,8 +416,13 @@
       - tapButtonMap [lrm|lmr]
   -->
   <libinput>
-    <device category="">
+    <device category="TPPS/2 IBM TrackPoint">
       <naturalScroll>no</naturalScroll>
+      <leftHanded>no</leftHanded>
+      <pointerSpeed>0.75</pointerSpeed>
+      <accelProfile>adaptive</accelProfile>
+      <tap>no</tap>
+      <disableWhileTyping>no</disableWhileTyping>
     </device>
   </libinput>
 </labwc_config>

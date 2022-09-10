@@ -1,4 +1,6 @@
 swaybg -i ~/Pictures/wallpapers/dark-foggy-forest.jpg &
+batsignal -b -e -w 20 -c 10 -d 5 &
 kanshi &
 fnott &
 waybar &
+iwgtk -i &

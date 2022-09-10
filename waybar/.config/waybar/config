@@ -3,12 +3,19 @@
 	"position": "bottom",
 	"height": 30,
 	"spacing": 4,
-	"modules-left": ["wlr/workspaces","wlr/taskbar"],
-	"modules-right": ["battery","clock"],
+	"modules-left": ["wlr/taskbar"],
+	"modules-right": ["tray","pulseaudio","battery","clock"],
 
-	"wlr/workspaces": {
-		"format": "{name}: {icon}",
-		"all-outputs": true
+	"tray": {
+		"icon-size": 21,
+		"spacing": 10
+	},
+	"pulseaudio": {
+		"format": "v: {volume}%"
+	},
+
+	"battery": {
+		"format": "b: {capacity}%"
 	},
 
 	"wlr/taskbar": {
