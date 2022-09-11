@@ -2,7 +2,7 @@
 <labwc_config>
   <core>
     <decoration>server</decoration>
-    <gap>5</gap>
+    <gap>0</gap>
     <adaptiveSync>no</adaptiveSync>
     <cycleViewPreview>no</cycleViewPreview>
     <cycleViewOutlines>yes</cycleViewOutlines>
@@ -10,7 +10,7 @@
   <!-- <font><theme> can be defined without an attribute to set all places -->
   <theme>
     <name>Arc-Dark-openbox</name>
-    <cornerRadius>8</cornerRadius>
+    <cornerRadius>0</cornerRadius>
     <font place="ActiveWindow">
       <name>Noto Sans</name>
       <size>10</size>
@@ -42,7 +42,6 @@
     <names>
       <name>Workspace 1</name>
       <name>Workspace 2</name>
-      <name>Workspace 3</name>
     </names>
   </desktops>
   <!--
@@ -90,11 +89,6 @@
         <to>Workspace 2</to>
       </action>
     </keybind>
-    <keybind key="W-3">
-      <action name="GoToDesktop">
-        <to>Workspace 3</to>
-      </action>
-    </keybind>
     <keybind key="W-S-exclam">
       <action name="SendToDesktop">
         <to>Workspace 1</to>
@@ -103,11 +97,6 @@
     <keybind key="W-S-at">
       <action name="SendToDesktop">
         <to>Workspace 2</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-numbersign">
-      <action name="SendToDesktop">
-        <to>Workspace 3</to>
       </action>
     </keybind>
     <keybind key="W-n">

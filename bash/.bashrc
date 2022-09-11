@@ -26,13 +26,13 @@ export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Cursor settings
-export XCURSOR_THEME="Simp1e-Nord-Light"
+export XCURSOR_THEME="Simp1e"
 export XCURSOR_SIZE="16"
 
 # GTK Settings
 gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-gsettings set org.gnome.desktop.interface cursor-theme 'Simp1e-Nord-Light'
+gsettings set org.gnome.desktop.interface cursor-theme 'Simp1e'
 gsettings set org.gnome.desktop.interface font-name 'Noto Sans 11'
 
 # firefox
