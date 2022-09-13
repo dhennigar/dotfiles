@@ -40,9 +40,9 @@ export MOZ_USE_WAYLAND=1
 export GDK_BACKEND=wayland
 
 # bemenu options
-foreground='#AAAAFF'
-background='#222233'
-hilight='#5555FF'
+foreground='#AAAAAA'
+background='#383c4a'
+hilight='#5294E2'
 export BEMENU_OPTS="\
 	--tf $foreground \
 	--tb $background \
@@ -58,6 +58,6 @@ export BEMENU_OPTS="\
 	--ff $foreground \
 	--bottom \
 	--line-height 30 \
-	--fn 'Noto Sans 10' \
+	--fn 'Noto Sans 11' \
 	--prompt 'Run:'"
 

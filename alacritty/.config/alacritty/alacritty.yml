@@ -5,6 +5,11 @@ window:
   title: Alacritty
   dynamic_title: true
 
+font:
+  normal: 
+    family: Noto Sans Mono
+  size: 11
+
 # Colors (One Dark)
 colors:
   primary:

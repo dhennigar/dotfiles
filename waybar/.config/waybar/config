@@ -10,6 +10,7 @@
 		"icon-size": 21,
 		"spacing": 5
 	},
+
 	"pulseaudio": {
        	 // "scroll-step": 1, // %, can be a float
        		"format": "{volume}% {icon}",
@@ -29,6 +30,7 @@
 	        },
        		"on-click": "pavucontrol"
 	},
+	
 	"battery": {
 		"format": "{capacity}% {icon}",
 		"format-icons": ["", "", "", "", ""]
@@ -44,5 +46,10 @@
 		"app_ids-mapping": {
 			"firefox": "Firefox"
 		}
+	},
+
+	"wlr/workspaces": {
+		"format": "{name}",
+		"on-click": "activate",
 	}
 }
