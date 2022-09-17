@@ -81,22 +81,22 @@
     </keybind>
     <keybind key="W-1">
       <action name="GoToDesktop">
-        <to>Workspace 1</to>
+        <to>1</to>
       </action>
     </keybind>
     <keybind key="W-2">
       <action name="GoToDesktop">
-        <to>Workspace 2</to>
+        <to>2</to>
       </action>
     </keybind>
     <keybind key="W-S-exclam">
       <action name="SendToDesktop">
-        <to>Workspace 1</to>
+        <to>1</to>
       </action>
     </keybind>
     <keybind key="W-S-at">
       <action name="SendToDesktop">
-        <to>Workspace 2</to>
+        <to>2</to>
       </action>
     </keybind>
     <keybind key="W-n">
