@@ -30,10 +30,10 @@ export XCURSOR_THEME="Simp1e"
 export XCURSOR_SIZE="16"
 
 # GTK Settings
-gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark'
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Arc'
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Light'
 gsettings set org.gnome.desktop.interface cursor-theme 'Simp1e'
-gsettings set org.gnome.desktop.interface font-name 'Noto Sans 11'
+gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
 
 # firefox
 export MOZ_USE_WAYLAND=1

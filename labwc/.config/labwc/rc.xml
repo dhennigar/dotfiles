@@ -9,8 +9,8 @@
   </core>
   <!-- <font><theme> can be defined without an attribute to set all places -->
   <theme>
-    <name>Arc-Dark-openbox</name>
-    <cornerRadius>0</cornerRadius>
+    <name>Arc-openbox</name>
+    <cornerRadius>5</cornerRadius>
     <font place="ActiveWindow">
       <name>Noto Sans</name>
       <size>10</size>
@@ -38,7 +38,7 @@
     <topMaximize>yes</topMaximize>
   </snapping>
   <desktops>
-    <popupTime>0</popupTime>
+    <popupTime>1000</popupTime>
     <names>
       <name>1</name>
       <name>2</name>
@@ -104,7 +104,7 @@
         <command>fnottctl dismiss</command>
       </action>
     </keybind>
-    <keybind key="W-Return">
+    <keybind key="W-t">
       <action name="Execute">
         <command>alacritty</command>
       </action>
@@ -121,7 +121,7 @@
     </keybind>
     <keybind key="W-e">
       <action name="Execute">
-        <command>pcmanfm</command>
+        <command>alacritty --command ranger</command>
       </action>
     </keybind>
     <keybind key="W-r">
@@ -139,6 +139,11 @@
     </keybind>
     <keybind key="A-F4">
       <action name="Close"/>
+    </keybind>
+    <keybind key="W-l">
+	    <action name="Execute">
+		    <command>gtklock</command>
+	    </action>
     </keybind>
     <keybind key="W-Up">
       <action name="ToggleMaximize"/>
@@ -214,9 +219,9 @@
         <action name="Resize"/>
       </mousebind>
       <mousebind button="W-Middle" action="Press">
-	      <action name="ToggleMaximize" />
-	      <action name="Focus" />
-	      <action name="Raise" />
+        <action name="ToggleMaximize"/>
+        <action name="Focus"/>
+        <action name="Raise"/>
       </mousebind>
     </context>
     <context name="Top">
