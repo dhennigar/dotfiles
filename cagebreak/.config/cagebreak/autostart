@@ -1,3 +1,5 @@
+#!/bin/bash
+
 swaybg --mode fill -i ~/Pictures/wallpapers/stawamus-chief.jpg &
 batsignal -b -e -w 20 -c 10 -d 5 &
 kanshi &

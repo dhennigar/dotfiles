@@ -11,16 +11,8 @@
   <theme>
     <name>Arc-openbox</name>
     <cornerRadius>5</cornerRadius>
-    <font place="ActiveWindow">
-      <name>Noto Sans</name>
-      <size>10</size>
-    </font>
-    <font place="MenuItem">
-      <name>Noto Sans</name>
-      <size>10</size>
-    </font>
-    <font place="OSD">
-      <name>Noto Sans</name>
+    <font>
+      <name>Roboto</name>
       <size>10</size>
     </font>
   </theme>
@@ -44,27 +36,20 @@
       <name>2</name>
     </names>
   </desktops>
-  <!--
-    Keybind actions are specified in labwc-actions(5)
-    The following keybind modifiers are supported:
-      W - window/super/logo
-      A - alt
-      C - ctrl
-      S - shift
-    Use <keyboard><default /> to load all the default keybinds (those listed
-    below). If the default keybinds are largely what you want, a sensible
-    approach could be to start the <keyboard> section with a <default />
-    element, and then (re-)define any special binds you need such as launching
-    your favourite terminal or application launcher.
-  -->
+  <!--Keybindings-->
   <keyboard>
     <repeatRate>30</repeatRate>
     <repeatDelay>400</repeatDelay>
-    <keybind key="W-Escape">
+    <keybind key="W-S-q">
       <action name="Exit"/>
     </keybind>
     <keybind key="W-S-r">
       <action name="Reconfigure"/>
+    </keybind>
+    <keybind key="W-l">
+	    <action name="Execute">
+		    <command>setsid waylock --init-color '#000000' --input-color '#5294e2' --fail-color '#ff0000'</command>
+	    </action>
     </keybind>
     <keybind key="A-Tab">
       <action name="NextWindow"/>
@@ -79,37 +64,17 @@
         <to>right</to>
       </action>
     </keybind>
-    <keybind key="W-1">
-      <action name="GoToDesktop">
-        <to>1</to>
-      </action>
-    </keybind>
-    <keybind key="W-2">
-      <action name="GoToDesktop">
-        <to>2</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-exclam">
-      <action name="SendToDesktop">
-        <to>1</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-at">
-      <action name="SendToDesktop">
-        <to>2</to>
-      </action>
-    </keybind>
     <keybind key="W-n">
       <action name="Execute">
         <command>fnottctl dismiss</command>
       </action>
     </keybind>
-    <keybind key="W-t">
+    <keybind key="W-Return">
       <action name="Execute">
         <command>alacritty</command>
       </action>
     </keybind>
-    <keybind key="W-Space">
+    <keybind key="W-space">
       <action name="Execute">
         <command>bemenu-run</command>
       </action>
@@ -137,14 +102,6 @@
     <keybind key="W-q">
       <action name="Close"/>
     </keybind>
-    <keybind key="A-F4">
-      <action name="Close"/>
-    </keybind>
-    <keybind key="W-l">
-	    <action name="Execute">
-		    <command>gtklock</command>
-	    </action>
-    </keybind>
     <keybind key="W-Up">
       <action name="ToggleMaximize"/>
     </keybind>
@@ -162,11 +119,6 @@
     <keybind key="W-Right">
       <action name="SnapToEdge">
         <direction>right</direction>
-      </action>
-    </keybind>
-    <keybind key="A-Space">
-      <action name="ShowMenu">
-        <menu>client-menu</menu>
       </action>
     </keybind>
     <keybind key="XF86_AudioLowerVolume">
