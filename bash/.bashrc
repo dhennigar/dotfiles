@@ -22,7 +22,7 @@ export VISUAL="vim"
 export TERMINAL="alacritty"
 
 # Qt and wayland things
-export QT_QPA_PLATFORM=wayland
+#export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Cursor settings
@@ -36,8 +36,8 @@ gsettings set org.gnome.desktop.interface cursor-theme 'Simp1e'
 gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
 
 # firefox
-export MOZ_USE_WAYLAND=1
-export GDK_BACKEND=wayland
+#export MOZ_USE_WAYLAND=1
+#export GDK_BACKEND=wayland
 
 # bemenu options
 foreground='#AAAAAA'
@@ -56,7 +56,6 @@ export BEMENU_OPTS="\
 	--hb $foreground \
 	--fb $background \
 	--ff $foreground \
-	--bottom \
 	--line-height 30 \
 	--fn 'Noto Sans 11' \
 	--prompt 'Run:'"

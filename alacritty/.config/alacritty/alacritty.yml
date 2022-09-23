@@ -7,7 +7,7 @@ window:
 
 font:
   normal: 
-    family: Roboto Mono
+    family: Noto Sans Mono
   size: 11
 
 # Colors (One Dark)

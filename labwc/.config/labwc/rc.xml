@@ -38,8 +38,8 @@
   </desktops>
   <!--Keybindings-->
   <keyboard>
-    <repeatRate>30</repeatRate>
-    <repeatDelay>400</repeatDelay>
+    <repeatRate>50</repeatRate>
+    <repeatDelay>250</repeatDelay>
     <keybind key="W-S-q">
       <action name="Exit"/>
     </keybind>
@@ -47,9 +47,9 @@
       <action name="Reconfigure"/>
     </keybind>
     <keybind key="W-l">
-	    <action name="Execute">
-		    <command>setsid waylock --init-color '#000000' --input-color '#5294e2' --fail-color '#ff0000'</command>
-	    </action>
+      <action name="Execute">
+        <command>setsid waylock --init-color '#000000' --input-color '#5294e2' --fail-color '#ff0000'</command>
+      </action>
     </keybind>
     <keybind key="A-Tab">
       <action name="NextWindow"/>
@@ -291,7 +291,7 @@
     <device category="TPPS/2 IBM TrackPoint">
       <naturalScroll>no</naturalScroll>
       <leftHanded>no</leftHanded>
-      <pointerSpeed>0.75</pointerSpeed>
+      <pointerSpeed>0.9</pointerSpeed>
       <accelProfile>adaptive</accelProfile>
       <tap>no</tap>
       <disableWhileTyping>no</disableWhileTyping>
