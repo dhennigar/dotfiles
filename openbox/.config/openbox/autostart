@@ -1,5 +1,0 @@
-# ~/.config/openbox/autostart
-picom &
-autorandr &
-feh --bg-fill ~/Pictures/wallpapers/stawamus-chief.jpg &
-tint2 &
