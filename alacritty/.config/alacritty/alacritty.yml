@@ -1,14 +1,14 @@
 window:
   padding:
-    x: 5
-    y: 5
+    x: 10
+    y: 10
   title: Alacritty
   dynamic_title: true
 
 font:
   normal: 
-    family: Noto Sans Mono
-  size: 11
+    family: 'Roboto Mono'
+    size: 12
 
 # Colors (One Dark)
 colors:
