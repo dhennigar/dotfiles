@@ -1,7 +1,7 @@
 # ~/.bashrc
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# [[ $- != *i* ]] && return
 
 # aliases
 alias :q='exit'
@@ -26,18 +26,18 @@ export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Cursor settings
-export XCURSOR_THEME="Simp1e"
+export XCURSOR_THEME="plan9"
 export XCURSOR_SIZE="16"
 
 # GTK Settings
 gsettings set org.gnome.desktop.interface gtk-theme 'Arc'
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Light'
-gsettings set org.gnome.desktop.interface cursor-theme 'Simp1e'
-gsettings set org.gnome.desktop.interface font-name 'Bitstream Vera Sans 10'
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
+gsettings set org.gnome.desktop.interface cursor-theme 'plan9'
+gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
 
 # firefox
-#export MOZ_USE_WAYLAND=1
-#export GDK_BACKEND=wayland
+export MOZ_USE_WAYLAND=1
+export GDK_BACKEND=wayland
 
 # bemenu options
 foreground='#AAAAAA'

@@ -11,16 +11,13 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'navarasu/onedark.nvim'
+Plug 'RRethy/nvim-base16'
 Plug 'jalvesaq/Nvim-R'
 
 vim.call('plug#end')
 
 -- Colors
--- require('onedark').setup {
--- 	style = 'darker'
--- }
-require('onedark').load()
+vim.cmd('colorscheme base16-one-light')
 
 -- Nvim-R
 vim.cmd([[
@@ -28,4 +25,5 @@ let R_auto_start = 1
 let R_objbr_auto_start = 1
 let R_objbr_place = 'console,above'
 let R_assign_map = '<M-->'
+let R_nvim_wd = 1
 ]])

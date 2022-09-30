@@ -9,7 +9,7 @@
   </core>
   <!-- <font><theme> can be defined without an attribute to set all places -->
   <theme>
-    <name>Arc-openbox</name>
+    <name>Arc</name>
     <cornerRadius>5</cornerRadius>
     <font>
       <name>Roboto</name>

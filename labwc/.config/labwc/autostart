@@ -1,8 +1,8 @@
-swaybg --mode fill -i ~/Pictures/wallpapers/stawamus-chief.jpg &
+swaybg --mode fill -i ~/pictures/Wallpapers/Chief.jpg &
 batsignal -b -e -w 20 -c 10 -d 5 &
 kanshi &
 fnott &
 waybar &
 swayidle -w \
-	timeout 300 "setsid waylock --init-color '#000000' --input-color '#5294e2' --fail-color '#ff0000'" \
-	before-sleep "setsid waylock --init-color '#000000' --input-color '#5294e2' --fail-color '#ff0000'" &
+	timeout 300 "gtklock -S -H -T 10" \
+	before-sleep "gtklock -S -H -T 10" &
