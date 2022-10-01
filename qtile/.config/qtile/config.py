@@ -21,10 +21,19 @@ def autostart():
 
 if qtile.core.name == 'x11':
     terminal = "urxvt"
+    browser = "firefox"
     lock = "slock"
 elif qtile.core.name == 'wayland':
     terminal = "alacritty"
     lock = "waylock --init-color '#000000' --input-color '#3355FF' --fail-color '#EE3333'"
+    browser = "firefox"
+    
+    from libqtile.backend.wayland import InputConfig
+    wl_input_rules = {
+         "TPPS/2 IBM TrackPoint": InputConfig(
+             accel_profile='adaptive',
+             pointer_accel=1),
+         }
 
 ################
 #   HOTKEYS    #
@@ -198,12 +207,5 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = True
 
-from libqtile.backend.wayland import InputConfig
-
-wl_input_rules = {
-        "TPPS/2 IBM TrackPoint": InputConfig(
-            accel_profile='adaptive',
-            pointer_accel=1),
-        }
 
 wmname = "LG3D"
