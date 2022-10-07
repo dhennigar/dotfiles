@@ -21,19 +21,12 @@ def autostart():
 
 if qtile.core.name == 'x11':
     terminal = "urxvt"
-    browser = "firefox"
+    browser = "qutebrowser"
     lock = "slock"
 elif qtile.core.name == 'wayland':
     terminal = "alacritty"
     lock = "waylock --init-color '#000000' --input-color '#3355FF' --fail-color '#EE3333'"
-    browser = "firefox"
-    
-    from libqtile.backend.wayland import InputConfig
-    wl_input_rules = {
-         "TPPS/2 IBM TrackPoint": InputConfig(
-             accel_profile='adaptive',
-             pointer_accel=1),
-         }
+    browser = "qutebrowser"
 
 ################
 #   HOTKEYS    #
@@ -43,8 +36,7 @@ alt = "mod1"
 
 keys = [
 
-    # Top Level Commands
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    # Navigation
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
@@ -53,8 +45,7 @@ keys = [
     Key([alt], "Tab", lazy.layout.next(), desc="Move window focus to next window"),
     Key([mod], "p", lazy.layout.previous(), desc="Move window focus to prev window"),
     Key([alt, "shift"], "Tab", lazy.layout.previous(), desc="Move window focus to prev window"),
-    Key([mod], "Tab", lazy.screen.next_group(), desc="Advance to next group"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "Tab", lazy.next_layout(), desc="Toggle tiling mode"),
 
     # Volume/Brightness Controls
     Key([], "XF86AudioMute", lazy.spawn('pamixer --toggle-mute'), desc='mute'),
@@ -64,36 +55,34 @@ keys = [
     Key([], "XF86MonBrightnessDown", lazy.spawn('brightnessctl set 10%-'), desc='decrease brightness'),
     
     # Window Commands
-    KeyChord([mod], "w", [
-        Key([], "t", lazy.next_layout(), desc="Toggle between tiling"),
+    KeyChord([mod, "shift"], "w", [
         Key([], "h", lazy.layout.shuffle_left()),
         Key([], "l", lazy.layout.shuffle_right()),
         Key([], "k", lazy.layout.shuffle_up()),
         Key([], "j", lazy.layout.shuffle_down()),
-        Key([], "q", lazy.window.kill())
-        ]),
-    KeyChord([mod, "shift"], "r", [
-        Key([], "h", lazy.layout.grow_left()),
-        Key([], "l", lazy.layout.grow_right()),
-        Key([], "j", lazy.layout.grow_down()),
-        Key([], "k", lazy.layout.grow_up())
+        Key([], "q", lazy.window.kill()),
+        Key([], "Left", lazy.layout.grow_left()),
+        Key([], "Right", lazy.layout.grow_right()),
+        Key([], "Down", lazy.layout.grow_down()),
+        Key([], "Up", lazy.layout.grow_up())
         ],
         mode=True,
-        name="Resize"),
+        name="Window"),
 
     # Qtile Commands
-    KeyChord([mod], "q", [
-        Key(["shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-        Key(["shift"], "r", lazy.reload_config(), desc="Reload the Config"),
+    KeyChord([mod, "shift"], "q", [
+        Key([], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+        Key([], "r", lazy.reload_config(), desc="Reload the Config"),
         Key([], "l", lazy.spawn(lock), desc="Lock the displays")
-        ]),
+        ],
+        mode=False,
+        name="Qtile"),
 
-    # Application Launchers
-    KeyChord([mod], "a", [
-        Key([], "b", lazy.spawn(browser), desc="Launch browser"),
-        Key([], "l", lazy.spawn("libreoffice"), desc="Launch libreoffice"),
-        Key([], "e", lazy.spawn("alacritty -e ranger"), desc="Launch file explorer")
-        ])
+    # Applications
+    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
+    Key([mod], "e", lazy.spawn("alacritty -e ranger"), desc="Launch file explorer"),
+    Key([mod], "space", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
 
 groups = [Group(i) for i in "1234"]
@@ -120,8 +109,8 @@ for i in groups:
 # Layouts and Widgets #
 #######################
 fg="000000"
-bg="eeeeee"
-hl="4477ff"
+bg="e8e0cc"
+hl="3a94c5"
 
 layouts = [
     layout.Max(
@@ -136,7 +125,7 @@ layouts = [
         border_on_single=True,
         border_width=3
         )
-]
+    ]
 
 widget_defaults = dict(
     font="Roboto Mono",
@@ -157,9 +146,11 @@ screens = [
                     inactive="#555555",
                     highlight_method="block"
                     ),
+                widget.Chord(),
                 widget.Prompt(),
                 widget.Spacer(),
-                widget.PulseVolume(fmt="VOL:{}  "),
+                widget.PulseVolume(fmt="VOL:{}  ",
+                                   get_volume_command="pamixer --get-volume"),
                 widget.Battery(
                     format="{percent:2.0%}",
                     fmt="BAT:{}   ",

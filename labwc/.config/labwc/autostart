@@ -1,5 +1,4 @@
-swaybg --mode fill -i ~/pictures/Wallpapers/Chief.jpg &
-batsignal -b -e -w 20 -c 10 -d 5 &
+swaybg --mode fill -i ~/pictures/Wallpapers/forest.jpg &
 kanshi &
 fnott &
 waybar &
