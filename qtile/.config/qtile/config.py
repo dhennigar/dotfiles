@@ -24,7 +24,7 @@ if qtile.core.name == 'x11':
     browser = "qutebrowser"
     lock = "slock"
 elif qtile.core.name == 'wayland':
-    terminal = "alacritty"
+    terminal = "foot"
     lock = "waylock --init-color '#000000' --input-color '#3355FF' --fail-color '#EE3333'"
     browser = "qutebrowser"
 
@@ -108,52 +108,51 @@ for i in groups:
 #######################
 # Layouts and Widgets #
 #######################
-fg="000000"
-bg="e8e0cc"
-hl="3a94c5"
+fg="bcbcbc"
+bg="262626"
 
 layouts = [
-    layout.Max(
-        border_focus=[hl],
-        border_width=0
-        ),
     layout.Columns(
-        border_focus=[hl],
-        border_focus_stack=[hl],
+        border_focus=[fg],
+        border_focus_stack=[fg],
         border_normal=[bg],
         border_normal_stack=[bg],
-        border_on_single=True,
-        border_width=3
+        border_on_single=False,
+        border_width=2
+        ),
+    layout.Max(
+        border_focus=[fg],
+        border_width=0
         )
     ]
 
 widget_defaults = dict(
     font="Roboto Mono",
-    fontsize=16,
+    fontsize=15,
     padding=3,
-    foreground=bg,
-    background=fg,
+    foreground=fg,
+    background=bg,
 )
 extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
                 widget.GroupBox(
-                    active=[bg],
-                    this_current_screen_border=[hl],
-                    inactive="#555555",
-                    highlight_method="block"
+                    active=[fg],
+                    this_current_screen_border=[fg],
+                    inactive="#626262",
+                    highlight_method="bar"
                     ),
                 widget.Chord(),
                 widget.Prompt(),
                 widget.Spacer(),
-                widget.PulseVolume(fmt="VOL:{}  ",
+                widget.PulseVolume(fmt="V:{}  ",
                                    get_volume_command="pamixer --get-volume"),
                 widget.Battery(
                     format="{percent:2.0%}",
-                    fmt="BAT:{}   ",
+                    fmt="B:{}   ",
                     ),
                 widget.Clock(
                     format="%H:%M",

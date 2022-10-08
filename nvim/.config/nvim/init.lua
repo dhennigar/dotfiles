@@ -22,9 +22,7 @@ vim.cmd([[
 if has('termguicolors')
 	set termguicolors
 endif
-set background=light
-let g:everforest_background = 'soft'
-colorscheme everforest
+colorscheme base16-apprentice
 ]])
 
 -- Nvim-R
