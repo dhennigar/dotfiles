@@ -12,14 +12,14 @@ export QT_QPA_PLATFORM="wayland;xcb"
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Cursor settings
-export XCURSOR_THEME="plan9"
-export XCURSOR_SIZE="16"
+#export XCURSOR_THEME="plan9"
+#export XCURSOR_SIZE="16"
 
 # GTK Settings
-#gsettings set org.gnome.desktop.interface gtk-theme 'Arc'
-#gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
-#gsettings set org.gnome.desktop.interface cursor-theme 'plan9'
-#gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
+gsettings set org.gnome.desktop.interface gtk-theme 'Arc'
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
+gsettings set org.gnome.desktop.interface cursor-theme 'plan9'
+gsettings set org.gnome.desktop.interface font-name 'Roboto 10'
 
 # firefox
 export MOZ_USE_WAYLAND=1

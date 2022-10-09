@@ -10,7 +10,7 @@ window:
 font:
   normal: 
     family: 'Roboto Mono'
-  size: 12
+  size: 11
 
 # Define Colours
 schemes:

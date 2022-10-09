@@ -25,8 +25,8 @@ if qtile.core.name == 'x11':
     lock = "slock"
 elif qtile.core.name == 'wayland':
     terminal = "foot"
-    lock = "waylock --init-color '#000000' --input-color '#3355FF' --fail-color '#EE3333'"
     browser = "qutebrowser"
+    lock = "waylock --init-color '#000000' --input-color '#626262' --fail-color '#ff0000'"
 
 ################
 #   HOTKEYS    #
@@ -46,6 +46,7 @@ keys = [
     Key([mod], "p", lazy.layout.previous(), desc="Move window focus to prev window"),
     Key([alt, "shift"], "Tab", lazy.layout.previous(), desc="Move window focus to prev window"),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle tiling mode"),
+    Key([mod], "q", lazy.window.kill()),
 
     # Volume/Brightness Controls
     Key([], "XF86AudioMute", lazy.spawn('pamixer --toggle-mute'), desc='mute'),
@@ -60,14 +61,13 @@ keys = [
         Key([], "l", lazy.layout.shuffle_right()),
         Key([], "k", lazy.layout.shuffle_up()),
         Key([], "j", lazy.layout.shuffle_down()),
-        Key([], "q", lazy.window.kill()),
-        Key([], "Left", lazy.layout.grow_left()),
-        Key([], "Right", lazy.layout.grow_right()),
-        Key([], "Down", lazy.layout.grow_down()),
-        Key([], "Up", lazy.layout.grow_up())
+        Key(["shift"], "h", lazy.layout.grow_left()),
+        Key(["shift"], "j", lazy.layout.grow_right()),
+        Key(["shift"], "k", lazy.layout.grow_down()),
+        Key(["shift"], "l", lazy.layout.grow_up())
         ],
         mode=True,
-        name="Window"),
+        name="window"),
 
     # Qtile Commands
     KeyChord([mod, "shift"], "q", [
@@ -76,7 +76,7 @@ keys = [
         Key([], "l", lazy.spawn(lock), desc="Lock the displays")
         ],
         mode=False,
-        name="Qtile"),
+        name="qtile"),
 
     # Applications
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
@@ -137,29 +137,28 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        top=bar.Bar(
+        bottom=bar.Bar(
             [
                 widget.GroupBox(
                     active=[fg],
-                    this_current_screen_border=[fg],
-                    inactive="#626262",
-                    highlight_method="bar"
+                    this_current_screen_border="#626262",
+                    inactive="#404040",
+                    highlight_method="block"
                     ),
                 widget.Chord(),
                 widget.Prompt(),
                 widget.Spacer(),
-                widget.PulseVolume(fmt="V:{}  ",
-                                   get_volume_command="pamixer --get-volume"),
+                widget.CurrentLayout(),
                 widget.Battery(
                     format="{percent:2.0%}",
-                    fmt="B:{}   ",
+                    fmt="  {}  ",
                     ),
                 widget.Clock(
                     format="%H:%M",
                     ),
                 widget.Spacer(length=15),
             ],
-            30,
+            26,
         ),
     ),
 ]
@@ -191,27 +190,27 @@ floating_layout = layout.Floating(
     ]
 )
 
-@lazy.window.function 
-def resize_floating_window(window, width: int = 0, height: int = 0): 
-    window.cmd_set_size_floating(window.width + width, window.height + height)
-
-@lazy.window.function
-def move_floating_window(window, x: int = 0, y: int = 0):
-    new_x = window.float_x + x
-    new_y = window.float_y + y
-    window.cmd_set_position_floating(new_x, new_y)
-
-keys.extend([
-    Key([mod, "shift"], "Left", resize_floating_window(width=-30), desc='increase width by 10'), 
-    Key([mod, "shift"], "Right", resize_floating_window(width=30), desc='decrease width by 10'), 
-    Key([mod, "shift"], "Up", resize_floating_window(height=-30), desc='increase height by 10'), 
-    Key([mod, "shift"], "Down", resize_floating_window(height=30), desc='decrease height by 10'),
-    Key([mod], "Left", move_floating_window(x=-30)),
-    Key([mod], "Right", move_floating_window(x=30)),
-    Key([mod], "Up", move_floating_window(y=-30)),
-    Key([mod], "Down", move_floating_window(y=30))
-    ]
-)
+#@lazy.window.function 
+#def resize_floating_window(window, width: int = 0, height: int = 0): 
+#    window.cmd_set_size_floating(window.width + width, window.height + height)
+#
+#@lazy.window.function
+#def move_floating_window(window, x: int = 0, y: int = 0):
+#    new_x = window.float_x + x
+#    new_y = window.float_y + y
+#    window.cmd_set_position_floating(new_x, new_y)
+#
+#keys.extend([
+#    Key([mod, "shift"], "Left", resize_floating_window(width=-30), desc='increase width by 10'), 
+#    Key([mod, "shift"], "Right", resize_floating_window(width=30), desc='decrease width by 10'), 
+#    Key([mod, "shift"], "Up", resize_floating_window(height=-30), desc='increase height by 10'), 
+#    Key([mod, "shift"], "Down", resize_floating_window(height=30), desc='decrease height by 10'),
+#    Key([mod], "Left", move_floating_window(x=-30)),
+#    Key([mod], "Right", move_floating_window(x=30)),
+#    Key([mod], "Up", move_floating_window(y=-30)),
+#    Key([mod], "Down", move_floating_window(y=30))
+#    ]
+#)
 
 ###########
 # Options #
