@@ -1,7 +1,7 @@
 swaybg --mode fill -i ~/pictures/Wallpapers/forest.jpg &
 kanshi &
 fnott &
-waybar &
+yambar &
 swayidle -w \
 	timeout 300 "gtklock -S -H -T 10" \
 	before-sleep "gtklock -S -H -T 10" &

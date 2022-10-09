@@ -174,18 +174,42 @@ mouse = [
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
-bring_front_click = False
+bring_front_click = True
 cursor_warp = False
 floating_layout = layout.Floating(
-    float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules,
-        Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
+        border_focus=[fg],
+        border_normal=[bg],
+        border_width=2,
+        float_rules=[
+            *layout.Floating.default_float_rules,
+            Match(wm_class="confirmreset"),  # gitk
+            Match(wm_class="makebranch"),  # gitk
+            Match(wm_class="maketag"),  # gitk
+            Match(wm_class="ssh-askpass"),  # ssh-askpass
+            Match(title="branchdialog"),  # gitk
+            Match(title="pinentry"),  # GPG key password entry
+    ]
+)
+
+@lazy.window.function 
+def resize_floating_window(window, width: int = 0, height: int = 0): 
+    window.cmd_set_size_floating(window.width + width, window.height + height)
+
+@lazy.window.function
+def move_floating_window(window, x: int = 0, y: int = 0):
+    new_x = window.float_x + x
+    new_y = window.float_y + y
+    window.cmd_set_position_floating(new_x, new_y)
+
+keys.extend([
+    Key([mod, "shift"], "Left", resize_floating_window(width=-30), desc='increase width by 10'), 
+    Key([mod, "shift"], "Right", resize_floating_window(width=30), desc='decrease width by 10'), 
+    Key([mod, "shift"], "Up", resize_floating_window(height=-30), desc='increase height by 10'), 
+    Key([mod, "shift"], "Down", resize_floating_window(height=30), desc='decrease height by 10'),
+    Key([mod], "Left", move_floating_window(x=-30)),
+    Key([mod], "Right", move_floating_window(x=30)),
+    Key([mod], "Up", move_floating_window(y=-30)),
+    Key([mod], "Down", move_floating_window(y=30))
     ]
 )
 

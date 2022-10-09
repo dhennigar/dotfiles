@@ -1,0 +1,26 @@
+# ~/.cwmrc
+
+# turn off default keys
+unbind-key all
+unbind-mouse all
+
+# group commands
+sticky yes
+
+# launch applications
+bind-key	4-Return	"urxvt"
+bind-key	4-b		"qutebrowser"
+
+command		qutebrowser	qutebrowser
+command		urxvt		urxvt
+command		ranger		"urxvt -e ranger"
+
+# manage windows
+bind-key	4-Left		window-move-left-big
+bind-key	4-Right		window-move-right-big
+bind-key	4-Up		window-move-up-big
+bind-key	4-Down		window-move-down-big
+
+# window manager actions
+bind-key 	4-Escape	quit
+bind-key 	4S-r		restart
