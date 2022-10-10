@@ -14,10 +14,8 @@ from libqtile import hook
 
 @hook.subscribe.startup_once
 def autostart():
-    if qtile.core.name == 'x11':
-        subprocess.Popen(['/home/dhenn/.config/qtile/autostart-x11.sh'])
-    elif qtile.core.name == 'wayland':
-        subprocess.Popen(['/home/dhenn/.config/qtile/autostart-wl.sh'])
+    if qtile.core.name == 'wayland':
+        subprocess.Popen(['/home/dhenn/.local/bin/autostart-wl'])
 
 if qtile.core.name == 'x11':
     terminal = "urxvt"

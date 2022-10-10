@@ -51,7 +51,7 @@ bind-key	4-t		window-vtile
 # window manager actions
 bind-key 	4-Escape	quit
 bind-key 	4S-r		restart
-
+bind-key	4S-Backspace	lock
 # mouse commands
 bind-mouse	4-1		window-move
 bind-mouse	4-3		window-resize
