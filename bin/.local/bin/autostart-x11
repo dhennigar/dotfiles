@@ -1,0 +1,5 @@
+#!/bin/bash
+autorandr &
+picom &
+~/.fehbg &
+dunst &
