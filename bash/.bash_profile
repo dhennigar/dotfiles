@@ -12,6 +12,8 @@ export $HOSTNAME
 case $XDG_SESSION_TYPE in
 	x11)
 		~/.local/bin/autostart-x11;;
+	wayland)
+		~/.local/bin/autostart-wl;;
 esac
 
 case $HOSTNAME in
@@ -26,4 +28,4 @@ export QT_QPA_PLATFORM="wayland;xcb"
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # alacritty hidpi
-export WINIT_HIDPI_FACTOR=1.0
+export WINIT_X11_SCALE_FACTOR=1.0

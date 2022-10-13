@@ -2,6 +2,7 @@
 autorandr &
 autorandr --change &
 picom &
-sleep 3
+sleep 1
 ~/.fehbg &
 dunst &
+batsignal -e -a "" -b &

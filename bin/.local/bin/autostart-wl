@@ -2,3 +2,4 @@
 kanshi &
 swaybg --mode fill -i ~/pictures/Wallpapers/forest.jpg &
 dunst &
+batsignal -e -a "" -b &

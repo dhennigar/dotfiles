@@ -11,22 +11,19 @@ import subprocess
 terminal = os.environ["TERMINAL"]
 
 # wayland autostart script. x11 version is launched by .bash_profile
-@hook.subscribe.startup_once
-def autostart():
-    if qtile.core.name == 'wayland':
-        subprocess.Popen(['/home/dhenn/.local/bin/autostart-wl'])
+#@hook.subscribe.startup_once
+#def autostart():
+#    if qtile.core.name == 'wayland':
+#        subprocess.Popen(['/home/dhenn/.local/bin/autostart-wl'])
 
 # backend-specific options
 if qtile.core.name == 'x11':
     lock = "slock"
 elif qtile.core.name == 'wayland':
-    lock = "waylock"
+    lock = "waylock --init-color '#000000' --input-color '#333333'"
 
 # host- and backend-agnostic options
 browser="qutebrowser"
-
-# set wallpaper
-# lazy.screen.set_wallpaper("/home/dhenn/pictures/Wallpapers/Chief.jpg", mode="fill")
 
 # hotkey definitions
 mod = "mod4"
@@ -44,15 +41,15 @@ keys = [
     Key([mod, alt], "k", lazy.layout.shuffle_up()),
     Key([mod, alt], "j", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "h", lazy.layout.grow_left()),
-    Key([mod, "shift"], "j", lazy.layout.grow_right()),
-    Key([mod, "shift"], "k", lazy.layout.grow_down()),
-    Key([mod, "shift"], "l", lazy.layout.grow_up()),
+    Key([mod, "shift"], "l", lazy.layout.grow_right()),
+    Key([mod, "shift"], "j", lazy.layout.grow_down()),
+    Key([mod, "shift"], "k", lazy.layout.grow_up()),
 
     Key([mod], "n", lazy.layout.next(), desc="focus to next window"),
     Key([alt], "Tab", lazy.layout.next(), desc="focus to next window"),
     Key([mod], "p", lazy.layout.previous(), desc="focus to prev window"),
     Key([alt, "shift"], "Tab", lazy.layout.previous(), desc="focus to prev window"),
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle tiling mode"),
+    Key([mod], "m", lazy.next_layout(), desc="Toggle tiling mode"),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod, "shift"], "f", lazy.window.toggle_floating()),
     Key([mod, "shift"], "q", lazy.window.kill()),
@@ -145,18 +142,19 @@ screens = [
                 widget.Chord(),
                 widget.Prompt(),
                 widget.Spacer(),
-                widget.CurrentLayout(),
                 widget.Battery(
                     format="{percent:2.0%}",
                     fmt="  {}  ",
                     ),
                 widget.Clock(
                     format="%H:%M",
+                    fmt="{}  ",
                     ),
-                widget.Spacer(length=15),
             ],
             26,
         ),
+        wallpaper="/home/dhenn/pictures/Wallpapers/Chief.jpg",
+        wallpaper_mode="stretch",
     ),
 ]
 

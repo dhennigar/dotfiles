@@ -6,13 +6,13 @@ unbind-mouse all
 
 # appearance
 borderwidth 2
-color activeborder	ffffff
-color inactiveborder 	333333
-color font		000000
-color selfont		000000
-color menubg		ffffff
-color menufg		000000
-fontname		xft:Roboto Mono:size=10
+color activeborder	"#ffffff"
+color inactiveborder 	"#333333"
+color font		"#000000"
+color selfont		"#ffffff"
+color menubg		"#ffffff"
+color menufg		"#333333"
+fontname		"xft:Roboto Mono:size=10"
 
 # group commands
 sticky yes
@@ -24,6 +24,7 @@ bind-key	4S-1		window-movetogroup-1
 bind-key	4S-2		window-movetogroup-2
 bind-key	4S-3		window-movetogroup-3
 bind-key	4S-4		window-movetogroup-4
+bind-key	4-0		window-stick
 
 # application menu
 command		qutebrowser	"qutebrowser"
@@ -60,10 +61,14 @@ bind-key	4M-k		window-snap-up
 bind-key	4M-l		window-snap-right
 bind-key	M-Tab		window-cycle
 bind-key	MS-Tab		window-rcycle
-bind-key	4-q		window-close
+bind-key	4-n		window-cycle
+bind-key	4-p		window-rcycle
+bind-key	4S-q		window-close
 bind-key	4-f		window-fullscreen
 bind-key	4-m		window-maximize
-bind-key	4-Tab		window-vtile
+bind-key	4S-t		window-vtile
+bind-key	4-minus		window-vmaximize
+bind-key	4-equal		window-hmaximize
 
 # media keys
 bind-key	XF86AudioRaiseVolume	"pamixer --increase 10"
