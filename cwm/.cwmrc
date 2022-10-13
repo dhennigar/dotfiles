@@ -6,6 +6,13 @@ unbind-mouse all
 
 # appearance
 borderwidth 2
+color activeborder	ffffff
+color inactiveborder 	333333
+color font		000000
+color selfont		000000
+color menubg		ffffff
+color menufg		000000
+fontname		xft:Roboto Mono:size=10
 
 # group commands
 sticky yes
@@ -18,21 +25,31 @@ bind-key	4S-2		window-movetogroup-2
 bind-key	4S-3		window-movetogroup-3
 bind-key	4S-4		window-movetogroup-4
 
+# application menu
+command		qutebrowser	"qutebrowser"
+command		ranger		"alacritty -e ranger"
+command		rstudio		"rstudio"
+
+# reserved commands
+command		term		"alacritty"
+command		lock		"slock"
 
 # launch applications
-bind-key	4-Return	"urxvt"
-bind-key	4-b		"qutebrowser"
-bind-key	4-space		menu-exec
-bind-key	4S-space	menu-cmd
-command		qutebrowser	qutebrowser
-command		urxvt		urxvt
-command		ranger		"urxvt -e ranger"
+bind-key	4-Return	terminal
+bind-key	4-b		qutebrowser
+bind-key	4-e		"alacritty -e ranger"
+bind-key	4S-space	menu-exec
+bind-key	4-space		menu-cmd
+bind-key	4-d		"print-date"
+bind-key	4-t		"print-time"
+bind-key	4-Escape	"dunstctl close"
 
 # manage windows
-bind-key	4-h		window-move-left-big
-bind-key	4-j		window-move-down-big
-bind-key	4-k		window-move-up-big
-bind-key	4-l		window-move-right-big
+moveamount	15
+bind-key	4-h		window-move-left
+bind-key	4-j		window-move-down
+bind-key	4-k		window-move-up
+bind-key	4-l		window-move-right
 bind-key	4S-h		window-resize-left-big
 bind-key	4S-j		window-resize-down-big
 bind-key	4S-k		window-resize-up-big
@@ -46,12 +63,20 @@ bind-key	MS-Tab		window-rcycle
 bind-key	4-q		window-close
 bind-key	4-f		window-fullscreen
 bind-key	4-m		window-maximize
-bind-key	4-t		window-vtile
+bind-key	4-Tab		window-vtile
+
+# media keys
+bind-key	XF86AudioRaiseVolume	"pamixer --increase 10"
+bind-key	XF86AudioLowerVolume 	"pamixer --decrease 10"
+bind-key	XF86AudioMute		"pamixer --toggle-mute"
+bind-key	XF86MonBrightnessUp	"brightnessctl set +10%"
+bind-key	XF86MonBrightnessDown	"brightnessctl set 10%-"
 
 # window manager actions
-bind-key 	4-Escape	quit
+bind-key 	4S-Escape	quit
 bind-key 	4S-r		restart
-bind-key	4S-Backspace	lock
+bind-key	4S-Delete	lock
+
 # mouse commands
 bind-mouse	4-1		window-move
 bind-mouse	4-3		window-resize

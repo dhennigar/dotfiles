@@ -1,5 +1,7 @@
 #!/bin/bash
 autorandr &
+autorandr --change &
 picom &
+sleep 3
 ~/.fehbg &
 dunst &

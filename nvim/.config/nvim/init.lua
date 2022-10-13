@@ -12,10 +12,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'RRethy/nvim-base16'
-Plug 'sainnhe/everforest'
 Plug 'jalvesaq/Nvim-R'
-Plug 'rktjmp/lush.nvim'
-Plug 'loganswartz/selenized.nvim'
 
 vim.call('plug#end')
 
@@ -24,15 +21,7 @@ vim.cmd([[
 if has('termguicolors')
 	set termguicolors
 endif
-let g:selenized_variant='bw'
-
-if $XDG_SESSION_TYPE=="x11"
-	set background=light
-else
-	set background=dark
-endif
-
-colorscheme selenized
+colorscheme base16-atelier-forest
 ]])
 
 -- Nvim-R

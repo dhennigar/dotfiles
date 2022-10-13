@@ -1,34 +1,34 @@
 # Daniel's Qtile Configuration
 
-from libqtile import qtile, bar, layout, widget
+from libqtile import qtile, bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-
-####################
-# Autostart script #
-####################
 import os
 import subprocess
-from libqtile import hook
 
+# host-specific options
+terminal = os.environ["TERMINAL"]
+
+# wayland autostart script. x11 version is launched by .bash_profile
 @hook.subscribe.startup_once
 def autostart():
     if qtile.core.name == 'wayland':
         subprocess.Popen(['/home/dhenn/.local/bin/autostart-wl'])
 
+# backend-specific options
 if qtile.core.name == 'x11':
-    terminal = "urxvt"
-    browser = "qutebrowser"
     lock = "slock"
 elif qtile.core.name == 'wayland':
-    terminal = "foot"
-    browser = "qutebrowser"
-    lock = "waylock --init-color '#000000' --input-color '#626262' --fail-color '#ff0000'"
+    lock = "waylock"
 
-################
-#   HOTKEYS    #
-################
+# host- and backend-agnostic options
+browser="qutebrowser"
+
+# set wallpaper
+# lazy.screen.set_wallpaper("/home/dhenn/pictures/Wallpapers/Chief.jpg", mode="fill")
+
+# hotkey definitions
 mod = "mod4"
 alt = "mod1"
 
@@ -39,12 +39,23 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "n", lazy.layout.next(), desc="Move window focus to next window"),
-    Key([alt], "Tab", lazy.layout.next(), desc="Move window focus to next window"),
-    Key([mod], "p", lazy.layout.previous(), desc="Move window focus to prev window"),
-    Key([alt, "shift"], "Tab", lazy.layout.previous(), desc="Move window focus to prev window"),
+    Key([mod, alt], "h", lazy.layout.shuffle_left()),
+    Key([mod, alt], "l", lazy.layout.shuffle_right()),
+    Key([mod, alt], "k", lazy.layout.shuffle_up()),
+    Key([mod, alt], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "h", lazy.layout.grow_left()),
+    Key([mod, "shift"], "j", lazy.layout.grow_right()),
+    Key([mod, "shift"], "k", lazy.layout.grow_down()),
+    Key([mod, "shift"], "l", lazy.layout.grow_up()),
+
+    Key([mod], "n", lazy.layout.next(), desc="focus to next window"),
+    Key([alt], "Tab", lazy.layout.next(), desc="focus to next window"),
+    Key([mod], "p", lazy.layout.previous(), desc="focus to prev window"),
+    Key([alt, "shift"], "Tab", lazy.layout.previous(), desc="focus to prev window"),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle tiling mode"),
-    Key([mod], "q", lazy.window.kill()),
+    Key([mod], "f", lazy.window.toggle_fullscreen()),
+    Key([mod, "shift"], "f", lazy.window.toggle_floating()),
+    Key([mod, "shift"], "q", lazy.window.kill()),
 
     # Volume/Brightness Controls
     Key([], "XF86AudioMute", lazy.spawn('pamixer --toggle-mute'), desc='mute'),
@@ -52,35 +63,23 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn('pamixer -d 5'), desc='lower volume'),
     Key([], "XF86MonBrightnessUp", lazy.spawn('brightnessctl set +10%'), desc='increase brightness'),
     Key([], "XF86MonBrightnessDown", lazy.spawn('brightnessctl set 10%-'), desc='decrease brightness'),
-    
-    # Window Commands
-    KeyChord([mod, "shift"], "w", [
-        Key([], "h", lazy.layout.shuffle_left()),
-        Key([], "l", lazy.layout.shuffle_right()),
-        Key([], "k", lazy.layout.shuffle_up()),
-        Key([], "j", lazy.layout.shuffle_down()),
-        Key(["shift"], "h", lazy.layout.grow_left()),
-        Key(["shift"], "j", lazy.layout.grow_right()),
-        Key(["shift"], "k", lazy.layout.grow_down()),
-        Key(["shift"], "l", lazy.layout.grow_up())
-        ],
-        mode=True,
-        name="window"),
 
     # Qtile Commands
-    KeyChord([mod, "shift"], "q", [
-        Key([], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-        Key([], "r", lazy.reload_config(), desc="Reload the Config"),
-        Key([], "l", lazy.spawn(lock), desc="Lock the displays")
-        ],
-        mode=False,
-        name="qtile"),
+    Key([mod, "shift"], "Escape", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the Config"),
+    Key([mod, "shift"], "Backspace", lazy.spawn(lock), desc="Lock the displays"),
 
     # Applications
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
     Key([mod], "e", lazy.spawn("alacritty -e ranger"), desc="Launch file explorer"),
+    Key([mod], "v", lazy.spawn("pavucontrol-qt"), desc="Launch volume control"),
     Key([mod], "space", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+
+    # Notifications
+    Key([mod], "d", lazy.spawn("print-date"), desc="get the date"),
+    Key([mod], "t", lazy.spawn("print-time"), desc="get the time"),
+    Key([mod], "Escape", lazy.spawn("dunstctl close"))
 ]
 
 groups = [Group(i) for i in "1234"]
