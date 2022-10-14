@@ -67,7 +67,7 @@ keys = [
     # Applications
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
-    Key([mod], "e", lazy.spawn("alacritty -e ranger"), desc="Launch file explorer"),
+    Key([mod], "e", lazy.spawn("my-term -e ranger"), desc="Launch file explorer"),
     Key([mod], "v", lazy.spawn("pavucontrol-qt"), desc="Launch volume control"),
     Key([mod], "space", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
