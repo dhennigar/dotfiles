@@ -7,14 +7,11 @@ from libqtile.utils import guess_terminal
 import os
 import subprocess
 
-# host-specific options
-terminal = os.environ["TERMINAL"]
-
-# wayland autostart script. x11 version is launched by .bash_profile
-#@hook.subscribe.startup_once
-#def autostart():
-#    if qtile.core.name == 'wayland':
-#        subprocess.Popen(['/home/dhenn/.local/bin/autostart-wl'])
+# wayland autostart script.
+@hook.subscribe.startup_once
+def autostart():
+    if qtile.core.name == 'wayland':
+        subprocess.Popen(['/home/dhenn/.local/bin/autostart-wl'])
 
 # backend-specific options
 if qtile.core.name == 'x11':
@@ -24,6 +21,7 @@ elif qtile.core.name == 'wayland':
 
 # host- and backend-agnostic options
 browser="qutebrowser"
+terminal="my-term"
 
 # hotkey definitions
 mod = "mod4"
@@ -69,7 +67,7 @@ keys = [
     # Applications
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
-    Key([mod], "e", lazy.spawn("alacritty -e ranger"), desc="Launch file explorer"),
+    Key([mod], "e", lazy.spawn("my-term -e ranger"), desc="Launch file explorer"),
     Key([mod], "v", lazy.spawn("pavucontrol-qt"), desc="Launch volume control"),
     Key([mod], "space", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
