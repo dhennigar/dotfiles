@@ -40,6 +40,7 @@ bind-key	4-Return	terminal
 bind-key	4-b		qutebrowser
 bind-key	4S-space	menu-exec
 bind-key	4-space		menu-cmd
+bind-key	4-v		"pavucontrol-qt"
 bind-key	4-d		"print-date"
 bind-key	4-t		"print-time"
 bind-key	4-Escape	"dunstctl close"
