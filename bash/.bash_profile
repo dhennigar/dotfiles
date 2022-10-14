@@ -12,15 +12,6 @@ export $HOSTNAME
 case $XDG_SESSION_TYPE in
 	x11)
 		~/.local/bin/autostart-x11;;
-	wayland)
-		~/.local/bin/autostart-wl;;
-esac
-
-case $HOSTNAME in
-	X200s)
-		export TERMINAL="urxvt";;
-	x230)
-		export TERMINAL="alacritty";;
 esac
 
 # Qt and wayland things

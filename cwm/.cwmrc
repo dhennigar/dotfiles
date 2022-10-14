@@ -28,11 +28,11 @@ bind-key	4-0		window-stick
 
 # application menu
 command		qutebrowser	"qutebrowser"
-command		ranger		"alacritty -e ranger"
+command		ranger		"my-term -e ranger"
 command		rstudio		"rstudio"
 
 # reserved commands
-command		term		"myterm"
+command		term		"my-term"
 command		lock		"slock"
 
 # launch applications

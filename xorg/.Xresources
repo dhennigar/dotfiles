@@ -1,7 +1,7 @@
 !!! OPTIONS
 *.scrollBar:	false
 *.cursorBlink:	false
-*.font:		xft:Roboto Mono:size=12
+*.font:		xft:Roboto Mono:size=11
 
 !!! SOLARIZED LIGHT THEME
 ! special
