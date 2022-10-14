@@ -17,7 +17,7 @@ case $XDG_SESSION_TYPE in
 esac
 
 case $HOSTNAME in
-	x200s)
+	X200s)
 		export TERMINAL="urxvt";;
 	x230)
 		export TERMINAL="alacritty";;

@@ -32,13 +32,12 @@ command		ranger		"alacritty -e ranger"
 command		rstudio		"rstudio"
 
 # reserved commands
-command		term		"alacritty"
+command		term		"myterm"
 command		lock		"slock"
 
 # launch applications
 bind-key	4-Return	terminal
 bind-key	4-b		qutebrowser
-bind-key	4-e		"alacritty -e ranger"
 bind-key	4S-space	menu-exec
 bind-key	4-space		menu-cmd
 bind-key	4-d		"print-date"
