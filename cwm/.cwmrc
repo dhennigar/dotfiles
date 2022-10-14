@@ -5,8 +5,8 @@ unbind-key all
 unbind-mouse all
 
 # appearance
-borderwidth 2
-color activeborder	"#ffffff"
+borderwidth 1
+color activeborder	"#dddddd"
 color inactiveborder 	"#333333"
 color font		"#000000"
 color selfont		"#ffffff"
@@ -80,7 +80,7 @@ bind-key	XF86MonBrightnessDown	"brightnessctl set 10%-"
 # window manager actions
 bind-key 	4S-Escape	quit
 bind-key 	4S-r		restart
-bind-key	4S-Delete	lock
+bind-key	4S-BackSpace	lock
 
 # mouse commands
 bind-mouse	4-1		window-move
