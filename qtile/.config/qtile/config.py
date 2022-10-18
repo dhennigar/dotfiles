@@ -69,7 +69,7 @@ keys = [
     Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
     Key([mod], "e", lazy.spawn("my-term -e ranger"), desc="Launch file explorer"),
     Key([mod], "v", lazy.spawn("pavucontrol-qt"), desc="Launch volume control"),
-    Key([mod], "space", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # Notifications
     Key([mod], "d", lazy.spawn("print-date"), desc="get the date"),

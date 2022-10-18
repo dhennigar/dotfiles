@@ -22,9 +22,9 @@
     ### Geometry ###
 
     # dynamic width from 0 to 300
-    # width = (0, 300)
+    width = (0, 300)
     # constant width of 300
-    width = 300
+    # width = 300
 
     # The maximum height of a single notification, excluding the frame.
     height = 300
@@ -90,7 +90,7 @@
     frame_width = 3
 
     # Defines color of the frame around the notification window.
-    frame_color = "#aaaaaa"
+    frame_color = "#333333"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -315,7 +315,7 @@
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#fff9f0"
+    background = "#faf9f0"
     foreground = "#111111"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
