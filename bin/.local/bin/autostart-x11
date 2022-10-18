@@ -1,7 +1,0 @@
-#!/bin/bash
-autorandr &
-picom &
-sleep 1
-/home/dhenn/.fehbg &
-dunst &
-batsignal -e -a "" &

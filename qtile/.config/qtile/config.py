@@ -7,21 +7,18 @@ from libqtile.utils import guess_terminal
 import os
 import subprocess
 
-# wayland autostart script.
 @hook.subscribe.startup_once
 def autostart():
     if qtile.core.name == 'wayland':
         subprocess.Popen(['/home/dhenn/.local/bin/autostart-wl'])
 
-# backend-specific options
 if qtile.core.name == 'x11':
     lock = "slock"
 elif qtile.core.name == 'wayland':
     lock = "waylock --init-color '#000000' --input-color '#333333'"
 
-# host- and backend-agnostic options
 browser="qutebrowser"
-terminal="my-term"
+terminal = os.environ['TERMINAL']
 
 # hotkey definitions
 mod = "mod4"

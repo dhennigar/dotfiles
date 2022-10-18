@@ -2,7 +2,7 @@
 # execute appropriate terminal for each laptop.
 case $HOSTNAME in
 	X200s)
-		urxvt $1 $2 ;;
+		foot $1 $2 ;;
 	x230)
 		alacritty $1 $2 ;;
 esac
