@@ -6,12 +6,7 @@
 export PATH="$PATH:/home/dhenn/.local/bin"
 export EDITOR="nvim"
 export VISUAL="nvim-qt"
-
-case in $HOSTNAME
-	x230)
-		export TERMINAL="alacritty";;
-	X200s)
-		export TERMINAL="foot";;
+export TERMINAL="foot"
 
 # Qt and wayland things
 export QT_QPA_PLATFORM="wayland;xcb"

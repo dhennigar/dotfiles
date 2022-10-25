@@ -20,7 +20,6 @@ elif qtile.core.name == 'wayland':
 browser="qutebrowser"
 terminal = os.environ['TERMINAL']
 
-# hotkey definitions
 mod = "mod4"
 alt = "mod1"
 
@@ -94,23 +93,15 @@ for i in groups:
         ]
     )
 
-#######################
-# Layouts and Widgets #
-#######################
-fg="bcbcbc"
-bg="262626"
-
 layouts = [
     layout.Columns(
-        border_focus=[fg],
-        border_focus_stack=[fg],
-        border_normal=[bg],
-        border_normal_stack=[bg],
+        border_focus="167bc2",
+        border_normal="ede6d3",
         border_on_single=False,
-        border_width=2
+        border_width=3,
         ),
     layout.Max(
-        border_focus=[fg],
+        border_focus='268bd2',
         border_width=0
         )
     ]
@@ -119,8 +110,8 @@ widget_defaults = dict(
     font="Roboto Mono",
     fontsize=15,
     padding=3,
-    foreground=fg,
-    background=bg,
+    foreground="fdf6e3",
+    background="000000",
 )
 extension_defaults = widget_defaults.copy()
 
@@ -129,10 +120,10 @@ screens = [
         bottom=bar.Bar(
             [
                 widget.GroupBox(
-                    active=[fg],
-                    this_current_screen_border="#626262",
-                    inactive="#404040",
-                    highlight_method="block"
+                    active="#ede6d3",
+                    this_current_screen_border="#268bd2",
+                    inactive="#5d5643",
+                    highlight_method="text"
                     ),
                 widget.Chord(),
                 widget.Prompt(),
@@ -148,12 +139,11 @@ screens = [
             ],
             26,
         ),
-        wallpaper="/home/dhenn/pictures/Wallpapers/Chief.jpg",
+        wallpaper="/home/dhenn/pictures/Wallpapers/llw.jpg",
         wallpaper_mode="stretch",
     ),
 ]
 
-# Drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
@@ -166,8 +156,8 @@ follow_mouse_focus = True
 bring_front_click = True
 cursor_warp = False
 floating_layout = layout.Floating(
-        border_focus=[fg],
-        border_normal=[bg],
+        border_focus="000000",
+        border_normal="ede6d3",
         border_width=2,
         float_rules=[
             *layout.Floating.default_float_rules,
@@ -180,31 +170,28 @@ floating_layout = layout.Floating(
     ]
 )
 
-#@lazy.window.function 
-#def resize_floating_window(window, width: int = 0, height: int = 0): 
-#    window.cmd_set_size_floating(window.width + width, window.height + height)
-#
-#@lazy.window.function
-#def move_floating_window(window, x: int = 0, y: int = 0):
-#    new_x = window.float_x + x
-#    new_y = window.float_y + y
-#    window.cmd_set_position_floating(new_x, new_y)
-#
-#keys.extend([
-#    Key([mod, "shift"], "Left", resize_floating_window(width=-30), desc='increase width by 10'), 
-#    Key([mod, "shift"], "Right", resize_floating_window(width=30), desc='decrease width by 10'), 
-#    Key([mod, "shift"], "Up", resize_floating_window(height=-30), desc='increase height by 10'), 
-#    Key([mod, "shift"], "Down", resize_floating_window(height=30), desc='decrease height by 10'),
-#    Key([mod], "Left", move_floating_window(x=-30)),
-#    Key([mod], "Right", move_floating_window(x=30)),
-#    Key([mod], "Up", move_floating_window(y=-30)),
-#    Key([mod], "Down", move_floating_window(y=30))
-#    ]
-#)
+@lazy.window.function 
+def resize_floating_window(window, width: int = 0, height: int = 0): 
+    window.cmd_set_size_floating(window.width + width, window.height + height)
 
-###########
-# Options #
-###########
+@lazy.window.function
+def move_floating_window(window, x: int = 0, y: int = 0):
+    new_x = window.float_x + x
+    new_y = window.float_y + y
+    window.cmd_set_position_floating(new_x, new_y)
+
+keys.extend([
+    Key([mod, "shift"], "Left", resize_floating_window(width=-50),), 
+    Key([mod, "shift"], "Right", resize_floating_window(width=50),), 
+    Key([mod, "shift"], "Up", resize_floating_window(height=-50), ), 
+    Key([mod, "shift"], "Down", resize_floating_window(height=50),),
+    Key([mod], "Left", move_floating_window(x=-50)),
+    Key([mod], "Right", move_floating_window(x=50)),
+    Key([mod], "Up", move_floating_window(y=-50)),
+    Key([mod], "Down", move_floating_window(y=50))
+    ]
+)
+
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
