@@ -1,0 +1,226 @@
+# ~/.config/sway/config
+
+# configuration file for sway
+# daniel hennigar
+
+################################################################################
+# includes and general settings
+include /etc/sway/config.d/*
+include ~/.config/sway/config.d/*
+include ~/.config/sway/autostart
+xwayland enable
+
+################################################################################
+# outputs and inputs
+
+# wallpaper
+output * bg "~/Pictures/Wallpapers/foggy-forest.jpg" fill
+
+# clam-shell mode (laptop lid switch)
+set $laptop eDP-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+exec_always ~/.config/sway/scripts/clam-shell.sh
+
+# lock screen on idle
+exec swayidle -w \
+     	timeout 300 'swaylock -f -c 000000' \
+ 	timeout 600 'wlopm --off \*' \
+ 	resume 'wlopm --on \*' \
+ 	before-sleep 'swaylock -f -c 000000' >/dev/null 2>&1 &
+
+# mouse settings
+focus_follows_mouse yes
+mouse_warping output
+input type:touchpad {
+	dwt enabled
+	tap enabled
+	scroll_method two_finger
+	natural_scroll enabled
+	tap_button_map lrm
+	pointer_accel 0.5
+}
+input "2:10:TPPS/2_Elan_TrackPoint" {
+	dwt enabled
+	dwtp enabled
+	click_method clickfinger
+	natural_scroll disabled
+	pointer_accel 0.3
+	scroll_method on_button_down
+	scroll_button button2
+}
+
+# keyboard settings
+input type:keyboard {
+	repeat_delay 190
+	repeat_rate 30
+}
+
+################################################################################
+# keybindings
+
+# these should align with my Labwc configuration as much as possible
+
+set $bind bindsym --no-repeat
+
+$bind Mod1+F4 kill
+$bind F11 fullscreen
+$bind F12 floating toggle
+
+$bind Mod1+Mod4+r exec "swaymsg reload && kanshictl reload"
+
+# focus windows
+$bind Mod1+Tab exec cycle-focus.py
+$bind Mod1+Shift+Tab exec cycle-focus.py --reverse
+
+$bind Mod4+Left focus left
+$bind Mod4+Right focus right
+$bind Mod4+Up focus up
+$bind Mod4+Down focus down
+
+# move windows
+$bind Mod4+Mod1+Left move left
+$bind Mod4+Mod1+Right move right
+$bind Mod4+Mod1+Up move up
+$bind Mod4+Mod1+Down move down
+
+# cycle workspaces
+$bind Mod4+equal workspace next_on_output
+$bind Mod4+minus workspace prev_on_output
+
+# select workspaces
+$bind Mod4+1 workspace 1
+$bind Mod4+2 workspace 2
+$bind Mod4+3 workspace 3
+$bind Mod4+4 workspace 4
+$bind Mod4+5 workspace 5
+$bind Mod4+6 workspace 6
+$bind Mod4+7 workspace 7
+$bind Mod4+8 workspace 8
+$bind Mod4+9 workspace 9
+$bind Mod4+Mod1+1 move to workspace 1
+$bind Mod4+Mod1+2 move to workspace 2
+$bind Mod4+Mod1+3 move to workspace 3
+$bind Mod4+Mod1+4 move to workspace 4
+$bind Mod4+Mod1+5 move to workspace 5
+$bind Mod4+Mod1+6 move to workspace 6
+$bind Mod4+Mod1+7 move to workspace 7
+$bind Mod4+Mod1+8 move to workspace 8
+$bind Mod4+Mod1+9 move to workspace 9
+
+# create empty workspace/send window to that workspace
+$bind Mod4+Tab exec new-workspace.sh
+$bind Mod4+Mod1+Tab exec new-workspace.sh --take-focused
+
+# applications
+$bind Mod4+t exec alacritty
+$bind Mod4+r exec fuzzel
+$bind Mod4+f exec thunar
+$bind Mod4+e exec run-or-raise -a emacs -c "emacsclient -c"
+$bind Mod4+Mod1+e exec run-or-raise -b -a emacs -c "emacsclient -c"
+$bind Mod4+w exec run-or-raise -a firefox -c firefox
+$bind Mod4+Mod1+w exec run-or-raise -b -a firefox -c firefox
+$bind Mod4+z exec run-or-raise -a zotero -c zotero
+$bind Mod4+Mod1+z exec run-or-raise -b -a zotero -c zotero
+
+# choose the system color scheme
+$bind Mod4+Mod1+t exec "select-theme.sh"
+
+# network settings
+$bind Mod4+n exec networkmanager_dmenu
+
+# dismiss notifications
+$bind Mod4+Backspace exec makoctl dismiss
+
+# mark recapture system
+$bind Mod4+m exec mark-recapture
+$bind Mod4+Mod1+m exec mark-recapture -n
+$bind Mod4+Shift+m exec mark-recapture -b
+
+# copy and paste history
+$bind Mod4+c exec cliphist-copy.sh
+
+## media keys
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioMute exec pamixer-mute-volume.sh
+bindsym XF86AudioMicMute exec pamixer --default-source -t
+bindsym XF86AudioRaiseVolume exec pamixer-raise-volume.sh
+bindsym XF86AudioLowerVolume exec pamixer-lower-volume.sh
+bindsym XF86MonBrightnessUp exec brightnessctl-increase.sh
+bindsym XF86MonBrightnessDown exec brightnessctl-decrease.sh
+bindsym XF86WLAN exec rfkill block all
+bindsym XF86Display exec kanshictl reload
+
+
+################################################################################
+## mouse bindings
+
+# move and resize windows
+floating_modifier Mod4 normal
+
+# obviates need for libinput-gestures as a separate program
+bindgesture --exact swipe:4:right exec new-workspace.py
+bindgesture --exact swipe:4:left exec new-workspace.py
+bindgesture --exact swipe:3:right workspace prev
+bindgesture --exact swipe:3:left workspace next
+
+
+################################################################################
+## appearance
+
+#client			     #border   #bg       #text     #indic
+client.focused		     "#3660d0" "#3660d0" "#FFFFFF" "#4670e0"
+client.focused_inactive	     "#999999" "#999999" "#000000" "#999999"
+client.unfocused	     "#888888" "#888888" "#000000" "#888888"
+client.urgent		     "#ff0000" "#ff0000" "#000000" "#ff0000"
+
+smart_borders on
+default_border pixel 2
+default_floating_border pixel 2
+font "Iosevka Comfy Wide 10"
+
+exec_always {
+	gsettings set org.gnome.desktop.interface gtk-theme "Mint-Yz-Base-Grey"
+	gsettings set org.gnome.desktop.interface icon-theme "Papirus"
+	gsettings set org.gnome.desktop.interface font-name "IBM Plex Sans"
+	gsettings set org.gnome.desktop.interface text-scaling-factor 1.0
+	gsettings set org.gnome.desktop.interface cursor-theme "Adwaita"
+	gsettings set org.gnome.desktop.interface cursor-theme-size 24
+	gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
+}
+seat seat0 xcursor_theme Adwaita 24
+
+
+################################################################################
+# window rules
+
+# fullscreen inhibits sleep
+for_window [app_id=".*"] inhibit_idle fullscreen
+for_window [class=".*"] inhibit_idle fullscreen
+# but not for these
+for_window [app_id="emacs"] inhibit_idle none
+
+# steam inhibits idle
+for_window [class="steam_app_2252570"] inhibit_idle open
+
+# place qbit on its own workspace and float the child windows.
+for_window [app_id="org.qbittorrent.qBittorrent"] move to workspace "qbit"
+for_window [app_id="org.qbittorrent.qBittorrent" title="(?!^qBittorrent)^.*$"] floating enable
+
+# floating windows
+for_window [class="R_x11"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="galculator"] floating enable
+for_window [title="^.*\.html" class="Google-chrome"] floating enable
+for_window [title="Save File"] floating enable
+
+
+################################################################################
+# environment set up
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+

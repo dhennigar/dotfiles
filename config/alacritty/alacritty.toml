@@ -1,0 +1,13 @@
+# import my colour settings
+import = [
+"~/.config/alacritty/colors.toml"
+]
+
+[window]
+dimensions = { columns = 85, lines = 26 }
+padding = {x = 5, y = 5}
+dynamic_padding = false
+
+[font]
+normal.family = "Iosevka Comfy Wide"
+size = 12
