@@ -10,7 +10,7 @@ msg="i3-msg"
     msg="swaymsg"
 }
 
-# TODO: Implement a reverse cycle. Woudl require proper indexing, I think.
+# TODO: Implement a reverse cycle. Would require proper indexing, I think
 reverse=""
 
 TEMP=$( getopt --options rh --longoptions reverse,help -- "$@" ) || exit 1
@@ -41,11 +41,9 @@ workspace=$( $msg -t get_workspaces |
 # Get the currently focused window
 focused=$( $msg -t get_tree | jq '.. | select(.type?) | select(.focused==true) | .id' )
 
-# Get the list of all window ids
-# window_ids=$( $msg -t get_tree | jq -r '.. | select(.type?=="con") | .id')
-
 # Get the list of window ids on the current workspace
-window_ids=$( $msg -t get_tree | jq -r --arg ws $workspace '.. | select(.type?=="workspace") | select(.name==$ws) | recurse(.nodes[]) | select(.name != null and .type?=="con") | .id' ) 
+window_ids=$( $msg -t get_tree |
+		  jq -r --arg ws $workspace '.. | select(.type?=="workspace" and .name==$ws) | recurse(.nodes[]) | select(.name != null and .type?=="con") | .id' ) 
 
 # If windows exist, find the focused one in the list, then focus the next one
 if [ -n "$window_ids" ]; then
