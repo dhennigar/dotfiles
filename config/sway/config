@@ -70,8 +70,8 @@ $bind F12 floating toggle
 $bind Mod1+Mod4+r exec "swaymsg reload && kanshictl reload"
 
 # focus windows
-$bind Mod1+Tab exec cycle-focus.py
-$bind Mod1+Shift+Tab exec cycle-focus.py --reverse
+$bind Mod1+Tab exec cycle-focus.sh
+$bind Mod1+Shift+Tab exec cycle-focus.sh --reverse
 
 $bind Mod4+Left focus left
 $bind Mod4+Right focus right
@@ -87,6 +87,10 @@ $bind Mod4+Mod1+Down move down
 # cycle workspaces
 $bind Mod4+equal workspace next_on_output
 $bind Mod4+minus workspace prev_on_output
+$bind Mod4+0 exec new-workspace.sh
+$bind Mod4+9 exec new-workspace.sh --reverse
+$bind Mod4+parenright exec new-workspace.sh --take-focused
+$bind Mod4+parenleft exec new-workspace.sh --take-focused --reverse
 
 # select workspaces
 $bind Mod4+1 workspace 1
@@ -97,45 +101,37 @@ $bind Mod4+5 workspace 5
 $bind Mod4+6 workspace 6
 $bind Mod4+7 workspace 7
 $bind Mod4+8 workspace 8
-$bind Mod4+9 workspace 9
-$bind Mod4+Mod1+1 move to workspace 1
-$bind Mod4+Mod1+2 move to workspace 2
-$bind Mod4+Mod1+3 move to workspace 3
-$bind Mod4+Mod1+4 move to workspace 4
-$bind Mod4+Mod1+5 move to workspace 5
-$bind Mod4+Mod1+6 move to workspace 6
-$bind Mod4+Mod1+7 move to workspace 7
-$bind Mod4+Mod1+8 move to workspace 8
-$bind Mod4+Mod1+9 move to workspace 9
 
-# create empty workspace/send window to that workspace
-$bind Mod4+Tab exec new-workspace.sh
-$bind Mod4+Mod1+Tab exec new-workspace.sh --take-focused
+$bind Mod4+Shift+1 move to workspace 1
+$bind Mod4+Shift+2 move to workspace 2
+$bind Mod4+Shift+3 move to workspace 3
+$bind Mod4+Shift+4 move to workspace 4
+$bind Mod4+Shift+5 move to workspace 5
+$bind Mod4+Shift+6 move to workspace 6
+$bind Mod4+Shift+7 move to workspace 7
+$bind Mod4+Shift+8 move to workspace 8
 
 # applications
 $bind Mod4+t exec alacritty
 $bind Mod4+r exec fuzzel
 $bind Mod4+f exec thunar
-$bind Mod4+e exec run-or-raise -a emacs -c "emacsclient -c"
-$bind Mod4+Mod1+e exec run-or-raise -b -a emacs -c "emacsclient -c"
-$bind Mod4+w exec run-or-raise -a firefox -c firefox
-$bind Mod4+Mod1+w exec run-or-raise -b -a firefox -c firefox
-$bind Mod4+z exec run-or-raise -a zotero -c zotero
-$bind Mod4+Mod1+z exec run-or-raise -b -a zotero -c zotero
+$bind Mod4+e exec run-or-raise.sh emacs "emacsclient -c"
+$bind Mod4+w exec run-or-raise.sh firefox
+$bind Mod4+z exec run-or-raise.sh zotero
 
 # choose the system color scheme
-$bind Mod4+Mod1+t exec "select-theme.sh"
+$bind Mod4+Mod1+t exec select-theme.sh
 
-# network settings
+# network settings fuzzel script
 $bind Mod4+n exec networkmanager_dmenu
 
 # dismiss notifications
 $bind Mod4+Backspace exec makoctl dismiss
 
 # mark recapture system
-$bind Mod4+m exec mark-recapture
-$bind Mod4+Mod1+m exec mark-recapture -n
-$bind Mod4+Shift+m exec mark-recapture -b
+$bind Mod4+m exec mark-recapture.sh
+$bind Mod4+Mod1+m exec mark-recapture.sh -n
+$bind Mod4+Shift+m exec mark-recapture.sh -s
 
 # copy and paste history
 $bind Mod4+c exec cliphist-copy.sh
