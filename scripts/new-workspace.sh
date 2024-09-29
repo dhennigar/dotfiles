@@ -26,7 +26,6 @@ msg="i3-msg"
 
 take=""
 forward="set"
-debug="0"
 
 while [[ "$1" ]]; do
     case "$1" in
@@ -37,16 +36,7 @@ Jumps to the next empty workspace. For example, if you're on workspace
 1 and there are workspaces [1 2 3 5 6] then you would jump to
 workspace 4.
 
-Suggested bindings:
-
-#### W_orkspace Next empty workspace
-    bindsym \$mod+greater exec i3-next-empty-workspace
-    bindsym \$mod+less    exec i3-next-empty-workspace --reverse
-
-(NB see i3-menu for the explanation of the #### W_orkspace line).
-
   -r, --reverse               reverse direction
-  -d, --debug                 debug to stderr
   -t, --take-focused          take currently focused with you"
             exit 0
             ;;
@@ -65,13 +55,9 @@ Suggested bindings:
     esac
 done
 
-(( debug == 1 )) && echo "$PROG: take=$take"
-
 this_workspace=$( $msg -t get_workspaces |
                   jq -r '.[] | select(.focused==true)|.num' |
                   awk -F':' '{print $1}' )
-
-(( debug == 1 )) && echo "$PROG: this_workspace=$this_workspace"
 
 if [[ "$forward" ]]; then
     next_workspace=$( $msg -t get_workspaces|
@@ -117,12 +103,10 @@ else
                       }
                       END{if (lasti > 1) print lasti-1}'  
                   )
-    (( debug == 1 )) && echo "next_workspace=$next_workspace"
 fi
 
 [[ "$next_workspace" ]] && {
     cmd="workspace $next_workspace"
     [[ "$take" ]] && cmd="move --no-auto-back-and-forth window to workspace number $next_workspace; $cmd"
-    (( debug == 1)) && echo "$PROG: $cmd"
     $msg "$cmd"
 }
