@@ -1,0 +1,114 @@
+@import url("file:///etc/xdg/waybar/style.css");
+
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: Iosevka Comfy Wide, FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: #000000;
+    border-bottom: 0px;
+    color: #ecf0f1;
+}
+
+
+
+#clock {
+    background-color: #000000;
+}
+
+
+
+#battery {
+    background-color: #000000;
+    color: #ecf0f1;
+}
+
+#battery.charging, #battery.plugged {
+    color: #ecf0f1;
+    background-color: #000000;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ecf0f1;
+        color: #000000;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ecf0f1;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+
+
+#tray {
+    background-color: #000000;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+
+
+#idle_inhibitor {
+    background-color: #000000;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+
+
+#taskbar {
+    background: #000000;
+    color: #ecf0f1;
+}
+
+#taskbar button.active {
+    background: #000000
+}
+
+#workspaces button {
+    padding: 0 3px 0 6px;    
+    background-color: transparent;
+    color: #ecf0f1;
+    box-shadow: inset 0 -3px transparent;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+#workspaces button.focused {
+    background-color: #ecf0f1;
+    color: #2d3435
+}
+
+#workspaces button.visible {
+    box-shadow: inset 0 -3px #ecf0f1
+
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+
+
