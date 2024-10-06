@@ -23,11 +23,13 @@ bindswitch --reload --locked lid:off output $laptop enable
 exec_always ~/.config/sway/scripts/clam-shell.sh
 
 # lock screen on idle
+set $screenlocker 'waylock -init-color 0x000000 -input-color 0x555555 -fail-color 0x550000' 
+
 exec swayidle -w \
-     	timeout 300 'swaylock -f -c 000000' \
+     	timeout 300 $screenlocker \
  	timeout 600 'wlopm --off \*' \
  	resume 'wlopm --on \*' \
- 	before-sleep 'swaylock -f -c 000000' >/dev/null 2>&1 &
+ 	before-sleep $screenlocker >/dev/null 2>&1 &
 
 # mouse settings
 focus_follows_mouse yes
@@ -63,34 +65,34 @@ input type:keyboard {
 
 set $bind bindsym --no-repeat
 
-$bind Mod1+F4 kill
-$bind F11 fullscreen
-$bind F12 floating toggle
-
+$bind Mod1+F4     kill
+$bind F11         fullscreen
+$bind F12         floating toggle
 $bind Mod1+Mod4+r exec "swaymsg reload && kanshictl reload"
 
 # focus windows
-$bind Mod1+Tab exec cycle-focus.sh
+$bind Mod1+Tab       exec cycle-focus.sh
 $bind Mod1+Shift+Tab exec cycle-focus.sh --reverse
 
-$bind Mod4+Left focus left
+$bind Mod4+Left  focus left
 $bind Mod4+Right focus right
-$bind Mod4+Up focus up
-$bind Mod4+Down focus down
+$bind Mod4+Up    focus up
+$bind Mod4+Down  focus down
+
+$bind Mod4+Mod1+Left  focus output left
+$bind Mod4+Mod1+Right focus output right
 
 # move windows
-$bind Mod4+Mod1+Left move left
-$bind Mod4+Mod1+Right move right
-$bind Mod4+Mod1+Up move up
-$bind Mod4+Mod1+Down move down
+$bind Mod4+Shift+Left  move left
+$bind Mod4+Shift+Right move right
+$bind Mod4+Shift+Up    move up
+$bind Mod4+Shift+Down  move down
 
 # cycle workspaces
-$bind Mod4+equal workspace next_on_output
-$bind Mod4+minus workspace prev_on_output
-$bind Mod4+0 exec new-workspace.sh
-$bind Mod4+9 exec new-workspace.sh --reverse
-$bind Mod4+parenright exec new-workspace.sh --take-focused
-$bind Mod4+parenleft exec new-workspace.sh --take-focused --reverse
+$bind Mod4+Tab            workspace next
+$bind Mod4+Shift+Tab      workspace prev
+$bind Mod4+Mod1+Tab       exec new-workspace.sh
+$bind Mod4+Mod1+Shift+Tab exec new-workspace.sh --take-focused
 
 # select workspaces
 $bind Mod4+1 workspace 1
@@ -101,6 +103,7 @@ $bind Mod4+5 workspace 5
 $bind Mod4+6 workspace 6
 $bind Mod4+7 workspace 7
 $bind Mod4+8 workspace 8
+$bind Mod4+9 workspace 9
 
 $bind Mod4+Shift+1 move to workspace 1
 $bind Mod4+Shift+2 move to workspace 2
@@ -110,14 +113,18 @@ $bind Mod4+Shift+5 move to workspace 5
 $bind Mod4+Shift+6 move to workspace 6
 $bind Mod4+Shift+7 move to workspace 7
 $bind Mod4+Shift+8 move to workspace 8
+$bind Mod4+Shift+9 move to workspace 9
+
+# toggle floating mode
+$bind Mod4+Mod1+f [workspace=__focused__] floating toggle
 
 # applications
 $bind Mod4+t exec alacritty
 $bind Mod4+r exec fuzzel
 $bind Mod4+f exec thunar
 $bind Mod4+e exec run-or-raise.sh emacs "emacsclient -c"
-$bind Mod4+w exec run-or-raise.sh firefox
-$bind Mod4+z exec run-or-raise.sh zotero
+$bind Mod4+w exec run-or-raise.sh firefox firefox
+$bind Mod4+z exec run-or-raise.sh zotero zotero
 
 # choose the system color scheme
 $bind Mod4+Mod1+t exec select-theme.sh
@@ -129,8 +136,8 @@ $bind Mod4+n exec networkmanager_dmenu
 $bind Mod4+Backspace exec makoctl dismiss
 
 # mark recapture system
-$bind Mod4+m exec mark-recapture.sh
-$bind Mod4+Mod1+m exec mark-recapture.sh -n
+$bind Mod4+m       exec mark-recapture.sh
+$bind Mod4+Mod1+m  exec mark-recapture.sh -n
 $bind Mod4+Shift+m exec mark-recapture.sh -s
 
 # copy and paste history
@@ -162,6 +169,12 @@ bindgesture --exact swipe:4:right exec new-workspace.py
 bindgesture --exact swipe:4:left exec new-workspace.py
 bindgesture --exact swipe:3:right workspace prev
 bindgesture --exact swipe:3:left workspace next
+
+# use side buttons to switch workspaces
+bindsym --whole-window Mod4+BTN_SIDE workspace prev
+bindsym --whole-window Mod4+BTN_EXTRA workspace next
+bindsym --whole-window Mod4+Shift+BTN_SIDE move to workspace prev
+bindsym --whole-window Mod4+Shift+BTN_EXTRA move to workspace next
 
 
 ################################################################################
@@ -202,14 +215,10 @@ for_window [app_id="emacs"] inhibit_idle none
 # steam inhibits idle
 for_window [class="steam_app_2252570"] inhibit_idle open
 
-# place qbit on its own workspace and float the child windows.
-for_window [app_id="org.qbittorrent.qBittorrent"] move to workspace "qbit"
-for_window [app_id="org.qbittorrent.qBittorrent" title="(?!^qBittorrent)^.*$"] floating enable
-
 # floating windows
 for_window [class="R_x11"] floating enable
 for_window [app_id="pavucontrol"] floating enable
-for_window [app_id="galculator"] floating enable
+for_window [app_id="qalculate"] floating enable
 for_window [title="^.*\.html" class="Google-chrome"] floating enable
 for_window [title="Save File"] floating enable
 

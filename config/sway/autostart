@@ -40,4 +40,4 @@ exec systemctl --user import-environment WAYLAND_DISPLAY
 exec ~/.config/alacritty/colors.sh
 
 # start a bar
-exec waybar -c ~/.config/waybar/sway.jsonc
+exec waybar
