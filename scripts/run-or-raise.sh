@@ -66,36 +66,28 @@ fi
         fi
 
         if [[ "$visible" == "false" ]]; then
-            # shellcheck disable=SC2086
             $msg $verbose "[con_id=$id] move window to workspace current"
-            # shellcheck disable=SC2086
             $msg $verbose "[con_id=$id] focus"
             if [[ "$origin" ]]; then
-                # shellcheck disable=SC2086
                 $msg $verbose "[con_id=$id] move position 0 0"
             fi
         else
-            # shellcheck disable=SC2086
             $msg $verbose "[con_id=$id] move window to scratchpad"
         fi
     else
         if [[ "$runstring" ]]; then
-            # shellcheck disable=SC2086
             $msg $verbose exec "$runstring"
         fi
     fi
     exit 0
 }
 
-# shellcheck disable=SC2086
 $msg $verbose "[app_id=\"$target\"] focus" &> /dev/null  || {
     # could be Xwayland app:  
-    # shellcheck disable=SC2086
     $msg $verbose "[class=\"$target\"] focus" &> /dev/null || {
         $msg $verbose "[instance=\"$target\"] focus" &> /dev/null  || {
             [[ "$runstring" ]] && {
                 # not running yet
-                # shellcheck disable=SC2086
                 $runstring &
             }
         }
