@@ -56,6 +56,8 @@ input "2:10:TPPS/2_Elan_TrackPoint" {
 input type:keyboard {
 	repeat_delay 190
 	repeat_rate 30
+	xkb_numlock enabled
+	xkb_capslock disabled
 }
 
 ################################################################################
@@ -65,10 +67,14 @@ input type:keyboard {
 
 set $bind bindsym --no-repeat
 
+# basics
 $bind Mod1+F4     kill
 $bind F11         fullscreen
-$bind F12         floating toggle
 $bind Mod1+Mod4+r exec "swaymsg reload && kanshictl reload"
+
+# manage floating windows
+$bind Mod4+f exec fit-floaters.sh --float   # nemonic: "float"
+$bind Mod4+t exec fit-floaters.sh --unfloat # nemonic: "tile"
 
 # focus windows
 $bind Mod1+Tab       exec cycle-focus.sh
@@ -115,19 +121,15 @@ $bind Mod4+Shift+7 move to workspace 7
 $bind Mod4+Shift+8 move to workspace 8
 $bind Mod4+Shift+9 move to workspace 9
 
-# toggle floating mode
-$bind Mod4+Mod1+f [workspace=__focused__] floating toggle
-
 # applications
-$bind Mod4+t exec alacritty
-$bind Mod4+r exec fuzzel
-$bind Mod4+f exec thunar
+$bind Mod4+s exec alacritty	# nemonic: "shell"
+$bind Mod4+r exec fuzzel	# nemonic: "run"
 $bind Mod4+e exec run-or-raise.sh emacs "emacsclient -c"
 $bind Mod4+w exec run-or-raise.sh firefox firefox
 $bind Mod4+z exec run-or-raise.sh zotero zotero
 
 # choose the system color scheme
-$bind Mod4+Mod1+t exec select-theme.sh
+# $bind Mod4+Mod1+t exec select-theme.sh
 
 # network settings fuzzel script
 $bind Mod4+n exec networkmanager_dmenu
@@ -221,6 +223,14 @@ for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="qalculate"] floating enable
 for_window [title="^.*\.html" class="Google-chrome"] floating enable
 for_window [title="Save File"] floating enable
+
+
+################################################################################
+# bar
+
+bar {
+    swaybar_command waybar
+}
 
 
 ################################################################################
