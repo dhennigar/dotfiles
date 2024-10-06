@@ -11,11 +11,13 @@ case $1 in
 	    daytime)
 		cp ~/.config/alacritty/light.toml ~/.config/alacritty/colors.toml
 		gsettings set org.gnome.desktop.interface gtk-theme Mint-Yz-Base-Grey
+		gsettings set org.gnome.desktop.interface color-scheme prefer-light
 		emacsclient -e "(load-theme-disable-others 'drh-mono-white)"
 		;;
 	    night)
 		cp ~/.config/alacritty/dark.toml ~/.config/alacritty/colors.toml
 		gsettings set org.gnome.desktop.interface gtk-theme Mint-Yz-Dark-Grey
+		gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 		emacsclient -e "(load-theme-disable-others 'drh-mono-black)"
 		;;
 	    transition)
@@ -23,10 +25,12 @@ case $1 in
 		then
 		    cp ~/.config/alacritty/cream.toml ~/.config/alacritty/colors.toml
 		    gsettings set org.gnome.desktop.interface gtk-theme Mint-Yz-Base-Grey
+		gsettings set org.gnome.desktop.interface color-scheme prefer-light
 		    emacsclient -e "(load-theme-disable-others 'drh-mono-cream)"
 		else
 		    cp ~/.config/alacritty/gray.toml ~/.config/alacritty/colors.toml
 		    gsettings set org.gnome.desktop.interface gtk-theme Mint-Yz-Dark-Grey
+		    gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 		    emacsclient -e "(load-theme-disable-others 'drh-mono-gray)"
 		fi
 		;;
