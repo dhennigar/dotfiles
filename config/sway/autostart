@@ -38,6 +38,3 @@ exec systemctl --user import-environment WAYLAND_DISPLAY
 
 # set terminal colors
 exec ~/.config/alacritty/colors.sh
-
-# start a bar
-exec waybar
