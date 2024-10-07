@@ -63,44 +63,47 @@ input type:keyboard {
 ################################################################################
 # keybindings
 
-# these should align with my Labwc configuration as much as possible
-
 set $bind bindsym --no-repeat
 
-# basics
+# close window
 $bind Mod1+F4     kill
-$bind F11         fullscreen
+
+# reload sway config
 $bind Mod1+Mod4+r exec "swaymsg reload && kanshictl reload"
 
-# manage floating windows
-$bind Mod4+f exec fit-floaters.sh --float   # nemonic: "float"
-$bind Mod4+t exec fit-floaters.sh --unfloat # nemonic: "tile"
-
-# focus windows
+# cycle focus through visible windows
 $bind Mod1+Tab       exec cycle-focus.sh
 $bind Mod1+Shift+Tab exec cycle-focus.sh --reverse
 
+# move focus around
 $bind Mod4+Left  focus left
 $bind Mod4+Right focus right
 $bind Mod4+Up    focus up
 $bind Mod4+Down  focus down
 
+# move focus between monitors
 $bind Mod4+Mod1+Left  focus output left
 $bind Mod4+Mod1+Right focus output right
 
-# move windows
+# move windows around
 $bind Mod4+Shift+Left  move left
 $bind Mod4+Shift+Right move right
 $bind Mod4+Shift+Up    move up
 $bind Mod4+Shift+Down  move down
 
+# move windows between monitors
+$bind Mod4+Mod1+Shift+Left  move to output left
+$bind Mod4+Mod1+Shift+Right move to output right
+
 # cycle workspaces
 $bind Mod4+Tab            workspace next
 $bind Mod4+Shift+Tab      workspace prev
+
+# open an empty workspace
 $bind Mod4+Mod1+Tab       exec new-workspace.sh
 $bind Mod4+Mod1+Shift+Tab exec new-workspace.sh --take-focused
 
-# select workspaces
+# select specific workspace
 $bind Mod4+1 workspace 1
 $bind Mod4+2 workspace 2
 $bind Mod4+3 workspace 3
@@ -111,6 +114,7 @@ $bind Mod4+7 workspace 7
 $bind Mod4+8 workspace 8
 $bind Mod4+9 workspace 9
 
+# move windows to specific workspace
 $bind Mod4+Shift+1 move to workspace 1
 $bind Mod4+Shift+2 move to workspace 2
 $bind Mod4+Shift+3 move to workspace 3
@@ -121,15 +125,16 @@ $bind Mod4+Shift+7 move to workspace 7
 $bind Mod4+Shift+8 move to workspace 8
 $bind Mod4+Shift+9 move to workspace 9
 
-# applications
-$bind Mod4+s exec alacritty	# nemonic: "shell"
-$bind Mod4+r exec fuzzel	# nemonic: "run"
+# launch applications
+$bind Mod4+t exec alacritty
+$bind Mod4+r exec fuzzel
+$bind Mod4+f exec thunar
 $bind Mod4+e exec run-or-raise.sh emacs "emacsclient -c"
 $bind Mod4+w exec run-or-raise.sh firefox firefox
 $bind Mod4+z exec run-or-raise.sh zotero zotero
 
 # choose the system color scheme
-# $bind Mod4+Mod1+t exec select-theme.sh
+$bind Mod4+Mod1+t exec select-theme.sh
 
 # network settings fuzzel script
 $bind Mod4+n exec networkmanager_dmenu
@@ -159,6 +164,9 @@ bindsym XF86MonBrightnessDown exec brightnessctl-decrease.sh
 bindsym XF86WLAN exec rfkill block all
 bindsym XF86Display exec kanshictl reload
 
+# toggle fullscreen
+$bind Mod4+Mod1+f fullscreen
+$bind Mod4+F11 fullscreen
 
 ################################################################################
 ## mouse bindings
