@@ -131,7 +131,7 @@ $bind Mod4+r exec fuzzel
 $bind Mod4+f exec thunar
 $bind Mod4+e exec run-or-raise.sh emacs "emacsclient -c"
 $bind Mod4+w exec run-or-raise.sh firefox firefox
-$bind Mod4+z exec run-or-raise.sh zotero zotero
+$bind Mod4+z exec run-or-raise.sh Zotero zotero
 
 # choose the system color scheme
 $bind Mod4+Mod1+t exec select-theme.sh
@@ -231,6 +231,7 @@ for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="qalculate"] floating enable
 for_window [title="^.*\.html" class="Google-chrome"] floating enable
 for_window [title="Save File"] floating enable
+for_window [app_id="Zotero" title="Progress"] floating enable
 
 
 ################################################################################
