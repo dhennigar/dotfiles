@@ -149,7 +149,7 @@
       (eshell-ls-symlink (:inherit eshell-ls-unreadable))
 
       ;; sh-mode
-      (sh-quoted-exec (:foreground ,weak :italic t))
+      (sh-quoted-exec (:foreground ,foreground :italic nil))
 
       ;; corfu mode
       (corfu-current (:background ,highlight :foreground ,foreground))
