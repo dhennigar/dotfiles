@@ -1,0 +1,18 @@
+# import my colour settings
+general.import = [
+"~/.config/alacritty/colors.toml"
+]
+
+[window]
+dimensions = { columns = 85, lines = 26 }
+padding = {x = 5, y = 5}
+dynamic_padding = false
+
+[font]
+normal.family = "Iosevka Comfy"
+size = 12
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 500
+blink_timeout = 0

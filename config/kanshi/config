@@ -1,0 +1,20 @@
+profile mobile {
+	output eDP-1 {
+		mode 1920x1200
+		position 0,0
+		scale 1.20
+	}
+}
+
+profile office {
+	output HDMI-A-1 {
+		mode 1920x1080
+		position 1601,0
+		scale 1.00
+	}
+	output eDP-1 {
+		mode 1920x1200
+		position 0,0
+		scale 1.20
+	}
+}

@@ -1,0 +1,14 @@
+Dotfiles - my configuration files
+
+Installation:
+	git clone https://github.com/dhennigar/dotfiles
+	cd dotfiles
+	./install.sh
+
+Dependencies:
+	sway (with autotiling)
+	alacritty
+	fuzzel
+	mako
+	kanshi
+	gammastep
