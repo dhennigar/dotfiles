@@ -1,18 +1,16 @@
 #!/bin/bash
 
-dots="~/Source/dotfiles"
-
 mkdir -p ~/.config
 mkdir -p ~/.mg.d
 
-ln -sf $dots/home/bashrc ~/.bashrc
-ln -sf $dots/home/bash_aliases ~/.bash_aliases
-ln -sf $dots/home/profile ~/.profile
-ln -sf $dots/home/mg ~/.mg
+ln -sf /home/dh/Source/dotfiles/home/bashrc ~/.bashrc
+ln -sf /home/dh/Source/dotfiles/home/bash_aliases ~/.bash_aliases
+ln -sf /home/dh/Source/dotfiles/home/profile ~/.profile
+ln -sf /home/dh/Source/dotfiles/home/mg ~/.mg
 
-ln -sf $dots/config/sway ~/.config/
-ln -sf $dots/config/mako ~/.config/
-ln -sf $dots/config/fuzzel ~/.config/
-ln -sf $dots/config/gammastep ~/.config/
-ln -sf $dots/config/kanshi ~/.config/
-ln -sf $dots/config/alacritty ~/.config/
+ln -sf /home/dh/Source/dotfiles/config/sway ~/.config/
+ln -sf /home/dh/Source/dotfiles/config/mako ~/.config/
+ln -sf /home/dh/Source/dotfiles/config/fuzzel ~/.config/
+ln -sf /home/dh/Source/dotfiles/config/gammastep ~/.config/
+ln -sf /home/dh/Source/dotfiles/config/kanshi ~/.config/
+ln -sf /home/dh/Source/dotfiles/config/alacritty ~/.config/
