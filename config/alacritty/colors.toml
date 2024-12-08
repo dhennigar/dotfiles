@@ -1,4 +1,4 @@
-# Base16 Tomorrow Night - alacritty color config
+# Base16 Bright - alacritty color config
 # Chris Kempson (http://chriskempson.com)
 
 [colors]
@@ -6,32 +6,32 @@ draw_bold_text_with_bright_colors = false
 
 # Default colors
 [colors.primary]
-background = '0x1d1f21'
-foreground = '0xc5c8c6'
+background = '0x000000'
+foreground = '0xe0e0e0'
 
 # Colors the cursor will use if `custom_cursor_colors` is true
 [colors.cursor]
-text = '0x1d1f21'
-cursor = '0xc5c8c6'
+text = '0x000000'
+cursor = '0xe0e0e0'
 
 # Normal colors
 [colors.normal]
-black = '0x1d1f21'
-red = '0xcc6666'
-green = '0xb5bd68'
-yellow = '0xf0c674'
-blue = '0x81a2be'
-magenta = '0xb294bb'
-cyan = '0x8abeb7'
-white = '0xc5c8c6'
+black = '0x000000'
+red = '0xfb0120'
+green = '0xa1c659'
+yellow = '0xfda331'
+blue = '0x6fb3d2'
+magenta = '0xd381c3'
+cyan = '0x76c7b7'
+white = '0xe0e0e0'
 
 # Bright colors
 [colors.bright]
-black = '0x969896'
-red = '0xde935f'
-green = '0x282a2e'
-yellow = '0x373b41'
-blue = '0xb4b7b4'
-magenta = '0xe0e0e0'
-cyan = '0xa3685a'
+black = '0xb0b0b0'
+red = '0xfc6d24'
+green = '0x303030'
+yellow = '0x505050'
+blue = '0xd0d0d0'
+magenta = '0xf5f5f5'
+cyan = '0xbe643c'
 white = '0xffffff'
