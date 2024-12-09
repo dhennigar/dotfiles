@@ -5,7 +5,7 @@ include /etc/sway/config.d/*
 include ~/.config/sway/config.d/*
 
 exec "~/.config/sway/autostart.sh"
-exec_always sway-title-status.pl
+exec_always i3-title-status
 exec_always autotiling
 
 # Settings
@@ -94,8 +94,8 @@ bindsym $mod+Backspace exec fnottctl dismiss
 bindsym $mod+t exec alacritty
 bindsym $mod+f exec thunar
 
-bindsym $mod+w exec sway-run-or-raise.pl firefox firefox
-bindsym $mod+e exec sway-run-or-raise.pl emacs "emacsclient -c"
+bindsym $mod+w exec i3-run-or-raise firefox firefox
+bindsym $mod+e exec i3-run-or-raise emacs "emacsclient -c"
 
 bindsym $mod+Left  focus left
 bindsym $mod+Down  focus down
@@ -109,15 +109,15 @@ bindsym $mod+Shift+Right move right
 
 bindsym F11 fullscreen
 
-bindsym $mod+o exec cycle-focus.sh
-bindsym $mod+b exec cycle-focus.sh -r
+bindsym $mod+o exec i3-cycle-focus
+# bindsym $mod+b exec cycle-focus.sh -r
 
 bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 bindsym $mod+Shift+n move to workspace next, workspace next
 bindsym $mod+Shift+p move to workspace prev, workspace next
-bindsym $mod+a exec sway-new-workspace.pl
-bindsym $mod+Shift+a exec sway-new-workspace.pl -t
+bindsym $mod+a exec i3-new-workspace
+bindsym $mod+Shift+a exec i3-new-workspace -t
 
 bindsym $mod+c [con_mark=caffeinated] inhibit_idle none; \
 	   inhibit_idle open, mark --add caffeinated
