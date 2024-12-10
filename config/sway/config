@@ -1,4 +1,4 @@
-# Papersway config
+# Sway configuration file
 # Daniel Hennigar
 
 include /etc/sway/config.d/*
@@ -125,9 +125,9 @@ bindsym $mod+Shift+c [con_mark=caffeinated] inhibit_idle none, \
 	   mark --add --toggle caffeinated
 for_window [con_mark=caffeinated] inhibit_idle open
 
-bindsym $mod+m exec mark-recapture.sh
-bindsym $mod+Shift+m exec mark-recapture.sh -s
-bindsym $mod+Mod1+m exec mark-recapture.sh -n
+bindsym $mod+m [con_mark=mark] focus
+bindsym $mod+Shift+m [con_mark=mark] move to workspace current, focus
+bindsym $mod+Mod1+m mark --add mark
 
 bindsym --locked XF86AudioPlay exec playerctl play
 bindsym --locked XF86AudioPause exec playerctl pause
