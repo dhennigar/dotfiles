@@ -8,7 +8,7 @@ Installation:
 
 Dependencies:
 	my shell scripts (https://github.com/dhennigar/shell-scripts)
-	i3-extras (https://github.com/dhennigar/i3-extras)
+	i3-utils (https://github.com/dhennigar/i3-utils)
 	sway (with autotiling)
 	alacritty
 	fuzzel
