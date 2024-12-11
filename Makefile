@@ -1,49 +1,39 @@
+# Define config directory
 XDG_CONFIG_HOME ?= $(HOME)/.config
-DOTFILES_HOME := home
-DOTFILES_CONFIG := config
+
+# List all files to be installed
+CONF_FILES := $(wildcard $(PWD)/config/*)
+HOME_FILES := $(wildcard $(PWD)/home/*) \
+	      $(filter-out $(PWD)/home/. $(PWD)/home/.., \
+	      $(wildcard $(PWD)/home/.*))
 
 install:
-	@echo "Installing dotfiles..."
-	# Symlink files from 'home' to $HOME
-	for file in $(DOTFILES_HOME)/*; do \
-		target="$(HOME)/$$(basename $$file)"; \
-		if [ -e "$$target" ] && [ ! -L "$$target" ]; then \
-			echo "Conflict: $$target already exists and is not a symlink. Skipping."; \
-		else \
-			ln -svf "$(PWD)/$$file" "$$target"; \
-		fi; \
-	done
-	# Symlink directories from 'config' to $XDG_CONFIG_HOME
-	for dir in $(DOTFILES_CONFIG)/*; do \
-		target="$(XDG_CONFIG_HOME)/$$(basename $$dir)"; \
-		if [ -e "$$target" ] && [ ! -L "$$target" ]; then \
-			echo "Conflict: $$target already exists and is not a symlink. Skipping."; \
-		else \
-			ln -svf "$(PWD)/$$dir" "$$target"; \
-		fi; \
-	done
-	@echo "Dotfiles installed successfully."
+	@echo "Installing files to $(HOME)..."
+	@cp -v $(HOME_FILES) $(HOME)
+	@echo "Home files installed."
+	@echo "Installing config files to $(XDG_CONFIG_HOME)..."
+	@cp -vr $(CONF_FILES) $(XDG_CONFIG_HOME)
+	@echo "Config files installed."
 
 uninstall:
-	@echo "Uninstalling dotfiles..."
-	# Remove symlinks from $HOME
-	for file in $(DOTFILES_HOME)/*; do \
-		target="$(HOME)/$$(basename $$file)"; \
-		if [ -L "$$target" ]; then \
-			rm -v "$$target"; \
-		else \
-			echo "No symlink found for $$target. Skipping."; \
-		fi; \
+	@echo "Uninstalling files from $(HOME)..."
+	@for file in $(HOME_FILES); do \
+		rm -rf $(HOME)/$$(basename $$file); \
 	done
-	# Remove symlinked directories from $XDG_CONFIG_HOME
-	for dir in $(DOTFILES_CONFIG)/*; do \
-		target="$(XDG_CONFIG_HOME)/$$(basename $$dir)"; \
-		if [ -L "$$target" ]; then \
-			rm -v "$$target"; \
-		else \
-			echo "No symlink found for $$target. Skipping."; \
-		fi; \
+	@echo "Home files uninstalled."
+	@echo "Uninstalling files from $(XDG_CONFIG_HOME)"
+	@for file in $(CONF_FILES); do \
+		rm -rf $(XDG_CONFIG_HOME)/$$(basename $$file); \
 	done
-	@echo "Dotfiles uninstalled successfully."
+	@echo "Config files uninstalled."
 
-.PHONY: install uninstall
+list:
+	@echo "Files to be installed to $(HOME):"
+	@echo "Home directory files:"
+	@for file in $(HOME_FILES); do \
+		echo $$file; \
+	done
+	@echo "Files to be installed to $(XDG_CONFIG_HOME):"
+	@for file in $(CONF_FILES); do \
+		echo $$file; \
+	done
