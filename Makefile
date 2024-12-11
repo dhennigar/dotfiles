@@ -9,21 +9,30 @@ HOME_FILES := $(wildcard $(PWD)/home/*) \
 
 install:
 	@echo "Installing files to $(HOME)..."
-	@cp -v $(HOME_FILES) $(HOME)
+	@for file in $(HOME_FILES); do \
+		ln -sf $$file $(HOME)/$$(basename $$file); \
+	done
 	@echo "Home files installed."
 	@echo "Installing config files to $(XDG_CONFIG_HOME)..."
-	@cp -vr $(CONF_FILES) $(XDG_CONFIG_HOME)
+	@mkdir -p $(XDG_CONFIG_HOME)
+	@for file in $(CONF_FILES); do \
+		ln -sf $$file $(XDG_CONFIG_HOME)/$$(basename $$file); \
+	done
 	@echo "Config files installed."
 
 uninstall:
 	@echo "Uninstalling files from $(HOME)..."
 	@for file in $(HOME_FILES); do \
-		rm -rf $(HOME)/$$(basename $$file); \
+		if [ -L $(HOME)/$$(basename $$file) ]; then \
+			rm -rf $(HOME)/$$(basename $$file); \
+		fi \
 	done
 	@echo "Home files uninstalled."
 	@echo "Uninstalling files from $(XDG_CONFIG_HOME)"
 	@for file in $(CONF_FILES); do \
-		rm -rf $(XDG_CONFIG_HOME)/$$(basename $$file); \
+		if [ -L $(XDG_CONFIG_HOME)/$$(basename $$file) ]; then \
+			rm -rf $(XDG_CONFIG_HOME)/$$(basename $$file); \
+		fi \
 	done
 	@echo "Config files uninstalled."
 
