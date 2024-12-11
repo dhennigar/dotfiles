@@ -19,7 +19,7 @@ output * bg "~/Pictures/Wallpapers/octopus.jpg" fill
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
-exec_always clam-shell.sh
+exec_always i3-clam-shell
 exec swayidle -w \
      timeout 300 'swaylock -f -c "#000000"' \
      timeout 10 'if pgrep -x swaylock; then swaymsg "output * power off; fi"' \
