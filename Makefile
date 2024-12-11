@@ -37,12 +37,16 @@ uninstall:
 	@echo "Config files uninstalled."
 
 list:
+	@echo
 	@echo "Files to be installed to $(HOME):"
-	@echo "Home directory files:"
+	@echo
 	@for file in $(HOME_FILES); do \
 		echo $$file; \
 	done
+	@echo
 	@echo "Files to be installed to $(XDG_CONFIG_HOME):"
+	@echo
 	@for file in $(CONF_FILES); do \
 		echo $$file; \
 	done
+	@echo
