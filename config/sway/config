@@ -88,7 +88,7 @@ bindsym $mod+l exec swaylock -c #000000
 
 bindsym $mod+r exec fuzzel
 bindsym $mod+Mod1+t exec select-theme.sh
-bindsym $mod+slash exec select-window.sh
+bindsym $mod+slash exec i3-select-window
 bindsym $mod+Backspace exec fnottctl dismiss
 
 bindsym $mod+t exec alacritty
