@@ -3,13 +3,15 @@ Dotfiles - my configuration files
 Installation:
 	git clone https://github.com/dhennigar/dotfiles
 	cd dotfiles
-	./install.sh
+	make list (optional sanity check)
+	make install
 
 Dependencies:
+	my shell scripts <https://github.com/dhennigar/shell-scripts>
+	i3-extras <https://github.com/dhennigar/i3-extras>
 	sway (with autotiling)
 	alacritty
 	fuzzel
-	mako
 	kanshi
 	gammastep
 
