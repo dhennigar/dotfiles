@@ -4,15 +4,12 @@
 include /etc/sway/config.d/*
 include ~/.config/sway/config.d/*
 
-exec "~/.config/sway/autostart.sh"
-exec_always i3-title-status
-exec_always autotiling
-
 # Settings
 xwayland force
 focus_wrapping no
 focus_follows_mouse no
 mouse_warping output
+focus_on_window_activation urgent
 
 # Wallpaper and screen locker
 output * bg "~/Pictures/Wallpapers/octopus.jpg" fill
@@ -52,32 +49,26 @@ input type:keyboard {
 	xkb_capslock disabled
 }
 
+# Swaynag
 swaynag_command swaynagmode
 set $nag exec swaynagmode
 mode "nag" {
   bindsym {
     Ctrl+d    mode "default"
 
-    Ctrl+c    $nag --exit
-    q         $nag --exit
+    Ctrl+g    $nag --exit
     Escape    $nag --exit
 
     Return    $nag --confirm
 
     Tab       $nag --select prev
     Shift+Tab $nag --select next
-
-    Left      $nag --select next
-    Right     $nag --select prev
-
-    Up        $nag --select next
-    Down      $nag --select prev
   }
 }
 
-
 # Keybindings
 set $mod Mod4
+floating_modifier $mod normal
 
 bindsym $mod+Delete kill
 bindsym Mod1+Ctrl+Delete $nag -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'
@@ -86,10 +77,16 @@ bindsym $mod+Mod1+r exec "swaymsg reload && kanshictl reload"
 
 bindsym $mod+l exec swaylock -c #000000
 
+bindsym $mod+Backspace exec fnottctl dismiss
+
+# Menus
 bindsym $mod+r exec fuzzel
 bindsym $mod+Mod1+t exec select-theme.sh
-bindsym $mod+slash exec i3-select-window
-bindsym $mod+Backspace exec fnottctl dismiss
+bindsym $mod+g exec i3-select-window
+bindsym $mod+slash exec i3-file-picker
+bindsym $mod+Mod1+slash exec i3-file-picker --show-hidden
+
+bindsym Print exec grim -g $(slurp)
 
 bindsym $mod+t exec alacritty
 bindsym $mod+f exec thunar
@@ -108,9 +105,13 @@ bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
 bindsym F11 fullscreen
+bindsym F12 floating toggle
 
-bindsym $mod+o exec i3-cycle-focus
-# bindsym $mod+b exec cycle-focus.sh -r
+# triggers focus cycling if i3-cycle-focus is running
+bindsym Mod1+Tab exec swaymsg -t send_tick cycle-focus
+bindsym Mod1+Shift+Tab exec swaymsg -t send_tick cycle-focus-reverse
+bindsym $mod+o exec swaymsg -t send_tick cycle-focus
+bindsym $mod+b exec swaymsg -t send_tick cycle-focus-reverse
 
 bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
@@ -119,7 +120,7 @@ bindsym $mod+Shift+p move to workspace prev, workspace next
 bindsym $mod+a exec i3-new-workspace
 bindsym $mod+Shift+a exec i3-new-workspace -t
 
-bindsym $mod+c [con_mark=caffeinated] inhibit_idle none; \
+bindsym $mod+Mod1+c [con_mark=caffeinated] inhibit_idle none; \
 	   inhibit_idle open, mark --add caffeinated
 bindsym $mod+Shift+c [con_mark=caffeinated] inhibit_idle none, \
 	   mark --add --toggle caffeinated
@@ -142,18 +143,46 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
 bindsym XF86WLAN exec rfkill block all
 bindsym XF86Display exec kanshictl reload
 
-for_window [class="R_x11"] floating enable
-for_window [app_id="pavucontrol"] floating enable
-for_window [app_id="qalculate"] floating enable
-for_window [title="^.*\.html" class="Google-chrome"] floating enable
-for_window [title="Save File"] floating enable
-for_window [app_id="Zotero" title="Progress"] floating enable
+# floating windows
+for_window {
+	   [class="R_x11"] floating enable
+	   [app_id="pavucontrol"] floating enable
+	   [title="^.*\.html" class="Google-chrome"] floating enable
+	   [title="Save File"] floating enable
+	   [app_id="Zotero" title="Progress"] floating enable
+}
+
+# scratchpad windows
+for_window [app_id="qalculate"] move to scratchpad
+bindsym $mod+equal scratchpad show
 
 #client			     #border   #bg       #text     #indicator
 client.focused		     "#3660d0" "#3660d0" "#FFFFFF" "#4670e0"
 client.focused_inactive	     "#999999" "#999999" "#000000" "#999999"
 client.unfocused	     "#888888" "#888888" "#000000" "#888888"
 client.urgent		     "#ff0000" "#ff0000" "#000000" "#ff0000"
-
 font "Iosevka Comfy 10"
 
+# Startup processes
+exec systemctl --user import-environment PATH
+exec systemctl --user import-environment WAYLAND_DISPLAY
+
+exec gsettings set org.gnome.desktop.interface gtk-theme Mint-Yz-Base-Grey
+exec gsettings set org.gnome.desktop.interface icon-theme Papirus
+exec gsettings set org.gnome.desktop.interface font-name "IBM Plex Sans"
+exec gsettings set org.gtk.Settings.FileChooser location-mode filename-entry
+
+exec i3-title-status --warning
+exec i3-cycle-focus
+exec autotiling
+exec kanshi
+exec mako
+exec gammastep
+
+exec qalculate-gtk
+exec emacs --daemon
+exec thunar --daemon
+
+# Local Variables:
+# mode: i3wm-config
+# End:
