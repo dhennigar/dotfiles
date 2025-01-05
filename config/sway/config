@@ -172,13 +172,13 @@ exec gsettings set org.gnome.desktop.interface icon-theme Papirus
 exec gsettings set org.gnome.desktop.interface font-name "IBM Plex Sans"
 exec gsettings set org.gtk.Settings.FileChooser location-mode filename-entry
 
+exec keyd-application-mapper
 exec i3-title-status --warning
 exec i3-cycle-focus
 exec autotiling
 exec kanshi
 exec mako
 exec gammastep
-
 exec qalculate-gtk
 exec emacs --daemon
 exec thunar --daemon
