@@ -3,7 +3,6 @@
 export LANG=en_CA.UTF-8
 
 PATH=$HOME/.local/bin:$HOME/perl5/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH; export PATH;
-
 PERL5LIB="/home/dh/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/dh/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/dh/perl5\""; export PERL_MB_OPT;
@@ -24,3 +23,8 @@ export VISUAL="emacsclient -c -a emacs"
 export GRIM_DEFAULT_DIR=~/Pictures/Captures
 
 export RESTIC_REPOSITORY=sftp:dhenn@192.168.1.71:/home/dhenn/backup
+
+LESS="-R"; export LESS
+LESSOPEN="|lesspipe.sh %s"; export LESSOPEN
+
+export CLANGD_FLAGS="--fallback-style=file --style=file"

@@ -17,7 +17,6 @@ rm() { command rm -i "${@}"; }	# ask before deleting
 cp() { command cp -i "${@}"; }	# ask before copying
 mv() { command mv -i "${@}"; }	# ask before moving
 
-
 # If we are using a terminal emulator, set a nice prompt.
 case ${TERM} in
 	[aEkx]term*|rxvt*|gnome*|konsole*|interix|tmux*)
@@ -102,3 +101,4 @@ if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
 fi
 
 . "$HOME/.cargo/env"
+

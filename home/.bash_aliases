@@ -15,6 +15,9 @@ alias ll='ls -l --color=auto'
 alias la='ls -a --color=auto'
 alias lla='ls -la --color=auto'
 
+### A nicer cat clone with syntax highlighting
+alias cat='bat -P --theme=ansi --style=plain'
+
 ### Similar for grep
 alias g='grep --color=auto'
 alias grep='grep --color=auto'
