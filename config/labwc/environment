@@ -1,0 +1,6 @@
+# ~/.config/labwc/environment
+
+XCURSOR_THEME=Adwaita
+XCURSOR_SIZE=24
+
+XDG_CURRENT_DESKTOP=labwc:wlroots

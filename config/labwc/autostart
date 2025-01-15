@@ -1,0 +1,15 @@
+#!/bin/bash
+
+systemctl --user import-environment PATH
+systemctl --user import-environment WAYLAND_DISPLAY
+
+kanshi >/dev/null 2>&1 &
+gammastep >/dev/null 2>&1 &
+mako >/dev/null 2>&1 &
+poweralertd >/dev/null 2>&1 &
+
+keyd-application-mapper >/dev/null 2>&1 &
+
+emacs --daemon >/dev/null 2>/&1 &
+thunar --daemon >/dev/null 2>/&1 &
+f

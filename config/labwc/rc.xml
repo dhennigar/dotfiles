@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<!-- Configuration for Labwc -->
+<!-- Daniel Hennigar -->
+
+<labwc_config>
+
+	<core>
+		<decoration>client</decoration>
+	</core>
+
+	<placement policy="automatic" />
+
+	<theme>
+		<name></name>
+		<icon>Papirus</icon>
+		<titlebar>
+			<layout>icon:iconify,max,close</layout>
+		</titlebar>
+		<cornerRadius>0</cornerRadius>
+		<keepBorder>no</keepBorder>
+		<dropShadow>yes</dropShadow>
+		<font>
+			<name>Iosevka Comfy</name>
+			<size>10</size>
+			<slant>normal</slant>
+			<weight>normal</weight>
+		</font>
+	</theme>
+
+	<windowSwitcher show="no">
+
+ 	<resistance>
+		<screenEdgeStrength>20</screenEdgeStrength>
+		<windowEdgeStrength>20</windowEdgeStrength>
+		<unSnapThreshold>20</unSnapThreshold>
+		<unMaximizeThreshold>150</unMaximizeThreshold>
+	</resistance>
+
+	<desktops popupTime="0" number="4" />
+
+	<keyboard>
+		<numlock>on</numlock>
+		<layoutScope>global</layoutScope>
+		<repeatRate>50</repeatRate>
+		<repeatDelay>200</repeatDelay>
+
+		<keybind key="W-o">
+			<action name="NextWindow" />
+		</keybind>
+		<keybind key="W-b">
+			<action name="PreviousWindow" />
+		</keybind>
+		<keybind key="W-t">
+			<action name="Execute" command="alacritty" />
+		</keybind>
+		<keybind key="W-r">
+			<action name="Execute" command="fuzzel" />
+		</keybind>
+		<keybind key="W-Delete">
+			<action name="Close" />
+		</keybind>
+		<keybind key="W-n">
+			<action name="GoToDesktop" to="right" wrap="yes" />
+		</keybind>
+		<keybind key="W-p">
+			<action name="GoToDesktop" to="left" wrap="yes" />
+		</keybind>
+
+		<!-- run or raise -->
+		<keybind key="W-e">
+			<action name="ForEach">
+				<query identifier="emacs" />
+				<then>
+					<action name="Focus" />
+				</then>
+				<none>
+					<action name="Execute" command="emacsclient -c" />
+				</non>
+			</action>
+		</keybind>
+		<keybind key="W-w">
+			<action name="ForEach">
+				<query identifier="firefox" />
+				<then>
+					<action name="Focus" />
+				</then>
+				<none>
+					<action name="Execute" command="firefox" />
+				</non>
+			</action>
+		</keybind>		
+	</keyboard>
+
+	<!-- consider adding mouse configuration here -->
+
+	<libinput>
+		<device category="touchpad">
+			<naturalScroll>yes</naturalScroll>
+		</device>
+	<libinput>
+
+</labwc_config>
+
