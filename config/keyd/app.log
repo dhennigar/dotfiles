@@ -1,0 +1,12 @@
+/home/dh/.config/keyd/app.conf: Updated, reloading config...
+Traceback (most recent call last):
+  File "/home/dh/.local/bin/keyd-application-mapper", line 560, in <module>
+    mon.run()
+    ~~~~~~~^^
+  File "/home/dh/.local/bin/keyd-application-mapper", line 244, in run
+    (obj, event, payload) = self.wl.recv_msg()
+                            ~~~~~~~~~~~~~~~~^^
+  File "/home/dh/.local/bin/keyd-application-mapper", line 198, in recv_msg
+    (object_id, evcode) = struct.unpack('II', self.sock.recv(8))
+                          ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+struct.error: unpack requires a buffer of 8 bytes

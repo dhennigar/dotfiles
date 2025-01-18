@@ -1,5 +1,5 @@
 #!/bin/bash
-## triggers my select-theme.sh script for theme changes.
+## triggers my i3-select-theme script for theme changes.
 
 ## $1 = event; $2 = old period; $3 = new period
 
@@ -8,17 +8,17 @@ case $1 in
 	# notify-send -t 10000 "Gammastep" "$1 from $2 to $3"
 	case $3 in
 	    daytime)
-		select-theme.sh day
+		i3-select-theme day
 		;;
 	    night)
-		select-theme.sh bright
+		i3-select-theme bright
 		;;
 	    transition)
 		if [ $(date +"%H") -lt 12 ]
 		then
-		    select-theme.sh morning
+		    i3-select-theme morning
 		else
-		    select-theme.sh night
+		    i3-select-theme night
 		fi
 		;;
 	esac

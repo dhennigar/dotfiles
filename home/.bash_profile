@@ -26,5 +26,3 @@ export RESTIC_REPOSITORY=sftp:dhenn@192.168.1.71:/home/dhenn/backup
 
 LESS="-R"; export LESS
 LESSOPEN="|lesspipe.sh %s"; export LESSOPEN
-
-export CLANGD_FLAGS="--fallback-style=file --style=file"

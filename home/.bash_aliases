@@ -39,6 +39,6 @@ alias lear='clear'
 alias cleear='clear'
 alias cleaar='clear'
 
+### default settings for GNU indent when used from command line
+### alias indent='indent -kr -ts4 -i4 -ce -brf -brs -br'
 
-### Use mpv as an image viewer (it's not great)
-alias mvi='mpv --config-dir=$HOME/.config/mvi'

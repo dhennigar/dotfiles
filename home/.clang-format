@@ -1,10 +1,15 @@
 BasedOnStyle: LLVM
 IndentWidth: 4
 ColumnLimit: 80
-UseTab: Never
+UseTab: Always
+TabWidth: 4
 BreakBeforeBraces: Attach
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
 SpacesInParentheses: false
 SpaceBeforeParens: ControlStatements
+DerivePointerAlignment: false
+PointerAlignment: Right
+IndentCaseLabels: false
+
