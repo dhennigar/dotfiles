@@ -21,7 +21,7 @@
 		<keepBorder>no</keepBorder>
 		<dropShadow>yes</dropShadow>
 		<font>
-			<name>Iosevka Comfy</name>
+			<name>monospace</name>
 			<size>10</size>
 			<slant>normal</slant>
 			<weight>normal</weight>

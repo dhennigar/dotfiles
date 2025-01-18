@@ -9,8 +9,8 @@ padding = {x = 5, y = 5}
 dynamic_padding = false
 
 [font]
-normal.family = "Iosevka Comfy"
-size = 12
+normal.family = "monospace"
+size = 11
 
 [cursor]
 style = { shape = "Block", blinking = "On" }

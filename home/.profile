@@ -1,6 +1,17 @@
 # ~/.profile
 
+# Source .bashrc if it exists
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi	
+
 export LANG=en_CA.UTF-8
+
+export EDITOR="mg"
+export VISUAL="mg"
+
+LESSOPEN="|lesspipe.sh %s"; export LESSOPEN
+LESS="-R"; export LESS
 
 PATH=$HOME/.local/bin:$HOME/perl5/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH; export PATH;
 PERL5LIB="/home/dh/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
@@ -16,15 +27,7 @@ XDG_CONFIG_HOME=$HOME/.config
 XDG_DATA_HOME=$HOME/.local/share
 XDG_STATE_HOME=$HOME/.local/state
 
-export ALTERNATE_EDITOR=""
-export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -c -a emacs"
-
 export GRIM_DEFAULT_DIR=~/Pictures/Captures
 
 export RESTIC_REPOSITORY=sftp:dhenn@192.168.1.71:/home/dhenn/backup
-
-LESSOPEN="|lesspipe.sh %s"; export LESSOPEN
-LESS="-R"; export LESS
-
 

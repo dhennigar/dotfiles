@@ -164,27 +164,33 @@ client.focused		     "#3660d0" "#3660d0" "#FFFFFF" "#4670e0"
 client.focused_inactive	     "#999999" "#999999" "#000000" "#999999"
 client.unfocused	     "#888888" "#888888" "#000000" "#888888"
 client.urgent		     "#ff0000" "#ff0000" "#000000" "#ff0000"
-font "Iosevka Comfy 10"
+font "monospace 10"
 
-exec systemctl --user import-environment PATH
-exec systemctl --user import-environment WAYLAND_DISPLAY
+exec_always {
+	    systemctl --user import-environment PATH
+	    systemctl --user import-environment WAYLAND_DISPLAY
+} 
 
-exec gsettings set org.gnome.desktop.interface gtk-theme Mint-Yz-Base-Grey
-exec gsettings set org.gnome.desktop.interface icon-theme Papirus
-exec gsettings set org.gnome.desktop.interface font-name "IBM Plex Sans"
-exec gsettings set org.gtk.Settings.FileChooser location-mode filename-entry
+exec {
 
-exec keyd-application-mapper
-exec i3-title-status -w >>/tmp/i3-title-status.log 2>&1
-exec i3-cycle-focus >>/tmp/i3-cycle-focus.log 2>&1
-exec autotiling
-exec kanshi
-exec mako
-exec gammastep
-exec qalculate-gtk
-exec emacs --daemon
-exec thunar --daemon
-exec poweralertd -s
+     gsettings set org.gnome.desktop.interface gtk-theme Adwaita
+     gsettings set org.gnome.desktop.interface icon-theme Papirus
+     gsettings set org.gnome.desktop.interface font-name "sans-serif"
+     gsettings set org.gtk.Settings.FileChooser location-mode filename-entry
+     
+     i3-title-status -w >>/tmp/i3-title-status.log 2>&1
+     i3-cycle-focus >>/tmp/i3-cycle-focus.log 2>&1
+     
+     autotiling
+     emacs --daemon
+     gammastep
+     kanshi
+     keyd-application-mapper
+     mako
+     poweralertd -s
+     qalculate-gtk
+     thunar --daemon
+}
 
 # Local Variables:
 # mode: i3wm-config
